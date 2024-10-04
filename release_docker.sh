@@ -2,7 +2,7 @@
 
 # Variables
 DOCKER_REGISTRY="dockerregistry.hlab.es"
-DOCKER_IMAGE_NAME="autovisita-landing"
+DOCKER_IMAGE_NAME="postifyai-landing"
 
 # Color codes
 RED='\033[0;31m'
