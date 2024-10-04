@@ -188,48 +188,54 @@ const metadata = {
       actions={[
         {
           variant: 'primary',
-          text: 'Pruébalo gratis',
+          text: 'Try it for free',
           href: '/signup/',
           icon: 'tabler:rocket',
         },
-        { text: 'Funcionalidades', href: '#features' },
+        { text: 'Features', href: '#features' },
       ]}
       items={[
         {
-          title: 'Reservas Automáticas',
+          title: 'Instant Article Generation',
           description:
-            'Envía enlaces de reserva automáticamente y permite que los interesados agenden visitas cuando les convenga, con toda la información del inmueble incluida.',
-          icon: 'tabler:calendar-plus',
+            'Generate SEO-optimized articles in seconds by simply inputting your target keyphrase and brand information, saving hours of research and writing time.',
+          icon: 'tabler:bolt',
         },
         {
-          title: 'Optimización de Visitas',
+          title: 'Brand-Aligned Content',
           description:
-            'Organiza las visitas de forma eficiente, agrupándolas por zona y horario, y mantén un registro claro de cada interesado y propiedad.',
-          icon: 'tabler:route',
+            'Create content that seamlessly integrates your brand messaging with SEO best practices, ensuring your articles drive traffic while reinforcing your brand identity.',
+          icon: 'tabler:building',
         },
         {
-          title: 'Recordatorios Inteligentes',
+          title: 'SEO Optimization',
           description:
-            'Envía recordatorios automáticos para reducir significativamente las ausencias, maximizando tu tiempo y oportunidades.',
-          icon: 'tabler:bell',
+            'Automatically optimize your content for search engines, including keyword placement, meta descriptions, and headings, to improve your search rankings.',
+          icon: 'tabler:search',
         },
         {
-          title: 'Información Centralizada',
+          title: 'Scalable Content Production',
           description:
-            'Accede instantáneamente a todos los datos relevantes de cada interesado, facilitando respuestas rápidas y personalizadas.',
-          icon: 'tabler:table',
+            'Rapidly produce multiple high-quality articles on various topics, allowing you to expand your content strategy and cover more keywords efficiently.',
+          icon: 'tabler:stack',
         },
       ]}
       isReversed
       iconClass="w-10 h-10 p-2 rounded-full border-2 text-primary dark:text-slate-200 border-primary dark:border-blue-700"
     >
-      <Fragment slot="title"> AutoVisita: Tu Asistente Virtual Inmobiliario </Fragment>
+      <Fragment slot="title"
+        >Enter <span class="text-primary">postifyAI</span><br /><br /> Your Virtual SEO Content Assistant</Fragment
+      >
 
-      <Fragment slot="subtitle"> Automatiza, optimiza y potencia tu gestión de visitas inmobiliarias </Fragment>
+      <Fragment slot="subtitle">Automate, optimize, and supercharge your SEO content creation</Fragment>
 
       <Fragment slot="image">
         <div class="w-full flex justify-center">
-          <Image src="~/assets/images/transformation.webp" alt="Hero image" class="rounded-md h-full object-contain" />
+          <Image
+            src="~/assets/images/transformation.webp"
+            alt="AI-powered SEO content creation"
+            class="rounded-md h-full object-contain"
+          />
         </div>
       </Fragment>
     </Content>
