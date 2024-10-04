@@ -16,7 +16,7 @@ export interface Props {
   hasInitialBg?: boolean;
 }
 
-const { metadata, hasAnnouncement = true, hasInitialBg = false } = Astro.props;
+const { metadata, hasAnnouncement = false, hasInitialBg = false } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
