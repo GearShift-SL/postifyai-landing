@@ -6,17 +6,17 @@ import { z } from 'zod';
 /* ---------------------------------- DATA ---------------------------------- */
 const APIENDPOINT = '/api/contact/';
 const SUCCESSMESSAGE = {
-  title: '¡Gracias!',
-  description: 'Nos pondremos en contacto contigo lo antes posible.',
+  title: 'Thank you!',
+  description: 'We will reach out as soon as possible.',
 };
 
 /* ----------------------------------- Zod ---------------------------------- */
 const ContactFormSchema = z.object({
-  name: z.string().min(1, 'Introduce un nombre.'),
-  email: z.string().min(1, 'Introduce un correo electrónico.').email('Introce un correo electrónico válido.'),
-  message: z.string().min(1, 'Introduce un mensaje.'),
+  name: z.string().min(1, 'Please, input your name.'),
+  email: z.string().min(1, 'Please, input a valid email.').email('Please, input a valid email.'),
+  message: z.string().min(1, 'Please write a message.'),
   terms: z.boolean().refine((value) => value === true, {
-    message: 'Acepta los términos y condiciones.',
+    message: 'Accept the terms.',
   }),
 });
 
