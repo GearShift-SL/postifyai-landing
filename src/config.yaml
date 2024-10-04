@@ -1,6 +1,6 @@
 site:
-  name: AutoVisita
-  site: 'https://autovisita.es'
+  name: postifyAI
+  site: 'https://postifyai.com'
   base: '/'
   trailingSlash: true
 
@@ -9,26 +9,26 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AutoVisita
-    template: '%s — AutoVisita'
-  description: 'Automatiza las visitas a tus viviendas en venta o alquiler con AutoVisita. Ahorra tiempo y dinero con nuestro sistema de visitas automáticas.'
+    default: postifyAI
+    template: '%s — postifyAI'
+  description: 'Automate your SEO article writing with postifyAI. Generate high-quality content in seconds with our fine-tuned AI writer.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AutoVisita
+    site_name: postifyAI
     images:
       - url: '~/assets/images/og_image.webp'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@autovisita'
-    site: '@autovisita'
+    handle: '@postifyai'
+    site: '@postifyai'
     cardType: summary_large_image
 
 i18n:
-  language: es
+  language: en
   textDirection: ltr
 
 apps:
