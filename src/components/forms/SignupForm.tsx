@@ -17,11 +17,11 @@ const TITLE = 'Sign up for early access';
 const SignupFormSchema = z.object({
   // first_name: z.string().min(1, 'Por favor introduce tu nombre.'),
   // last_name: z.string().min(1, 'Introduce tus apellidos.'),
-  email: z.string().min(1, 'Introduce una dirección de correo.').email('Introduce una dirección de correo válida.'),
+  email: z.string().min(1, 'Input a valid email address.').email('Input a valid email address.'),
   // password: z.string().min(1, 'Por favor introduce una contraseña.'),
   // confirm_password: z.string().min(1, 'Por favor confirma tu contraseña.'),
   terms: z.boolean().refine((value) => value === true, {
-    message: 'Debes aceptar los términos y condiciones.',
+    message: 'You must accept the terms.',
   }),
 });
 
