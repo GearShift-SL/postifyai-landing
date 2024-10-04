@@ -1,0 +1,62 @@
+---
+import SignupForm from '~/components/forms/SignupForm';
+import Hero from '~/components/widgets/Hero.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const seatsAvailable = 50;
+---
+
+<PageLayout>
+  <Hero title="¡Regístrate y recibe un descuento!">
+    <Fragment slot="subtitle">
+      AutoVisita está en versión Beta y saldrá al público en las próximas semanas. <br /><br />
+      🎉 Los primeros {seatsAvailable} clientes <span class="font-semibold">recibirán un descuento del 50%</span> en sus
+      primeros 2 años. 🎉
+
+      <br />
+
+      <Fragment>
+        <br />
+        <span class="text-lg text-gray-500">
+          ¡Quedan{' '}
+          <span id="seats-remaining" class="font-semibold">
+            {seatsAvailable}
+          </span>{' '}
+          cupos disponibles! 🚀
+        </span>
+      </Fragment>
+    </Fragment>
+
+    <Fragment slot="content">
+      <SignupForm client:idle />
+
+      <div class="mt-0">
+        <a class="text-md text-muted"
+          >Si estás interesado en probar la versión Beta de AutoVisita y ayudarnos a mejorar, <a
+            href="/contact/"
+            class="text-blue-600"
+          >
+            mándanos un mensaje</a
+          >.</a
+        >
+      </div>
+    </Fragment>
+  </Hero>
+</PageLayout>
+
+<script>
+  function updateSeatsRemaining() {
+    fetch('/api/seats-remaining/')
+      .then((response) => response.json())
+      .then((data) => {
+        const seatsRemainingElement = document.getElementById('seats-remaining');
+        if (seatsRemainingElement) {
+          seatsRemainingElement.textContent = data.seatsRemaining.toString() + ' ';
+        }
+      })
+      .catch((error) => console.error('Error fetching seats remaining:', error));
+  }
+
+  // Run the update function when the page loads
+  document.addEventListener('astro:page-load', updateSeatsRemaining);
+</script>

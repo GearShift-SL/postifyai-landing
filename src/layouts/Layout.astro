@@ -1,0 +1,107 @@
+---
+import '~/assets/styles/tailwind.css';
+
+import { I18N } from 'astrowind:config';
+
+import CommonMeta from '~/components/common/CommonMeta.astro';
+import Favicons from '~/components/Favicons.astro';
+import CustomStyles from '~/components/CustomStyles.astro';
+import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
+import Metadata from '~/components/common/Metadata.astro';
+import SiteVerification from '~/components/common/SiteVerification.astro';
+import BasicScripts from '~/components/common/BasicScripts.astro';
+import CookieConsent from '~/components/common/cookie-consent/CookieConsent.astro';
+
+// Comment the line below to disable View Transitions
+import { ViewTransitions } from 'astro:transitions';
+
+import type { MetaData as MetaDataType } from '~/types';
+
+export interface Props {
+  metadata?: MetaDataType;
+}
+
+const { metadata = {} } = Astro.props;
+const { language, textDirection } = I18N;
+---
+
+<!doctype html>
+<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+  <head>
+    <!-- GA4 -->
+    <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-3CKFW4FWPS"></script>
+
+    <script>
+      // We need a global definition to avoid type warnings
+      declare global {
+        interface Window {
+          dataLayer: Record<string, any>[];
+          gtag: (...args: any[]) => void;
+        }
+      }
+
+      // Run this on page load
+      document.addEventListener('astro:page-load', () => {
+        // Initialize dataLayer
+        window.dataLayer = window.dataLayer || [];
+
+        // Define gtag function
+        window.gtag = function gtag(...args: any[]) {
+          window.dataLayer.push(arguments);
+        };
+
+        // Load GA4 with denied default consents
+        window.gtag('js', new Date());
+        window.gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'denied',
+        });
+        window.gtag('config', 'G-3CKFW4FWPS');
+      });
+    </script>
+
+    <!-- End GA4 -->
+
+    <CommonMeta />
+    <Favicons />
+    <CustomStyles />
+    <ApplyColorMode />
+    <Metadata {...metadata} />
+    <SiteVerification />
+
+    <!-- Comment the line below to disable View Transitions -->
+    <ViewTransitions fallback="swap" />
+  </head>
+
+  <body class="antialiased text-default bg-page tracking-tight">
+    <slot />
+
+    <BasicScripts />
+
+    <div transition:persist="find-me-on-the-other-side" id="cc-container">
+      <CookieConsent />
+
+      <script is:inline>
+        // Restore the `show--consent` class if it was present before the page swap
+        document.addEventListener('astro:before-preparation', () => {
+          const htmlClassName = window.document.documentElement.className;
+          const consentClassPresent = htmlClassName.includes('show--consent') ? true : false;
+          window._showConsentClass = consentClassPresent;
+        });
+
+        document.addEventListener('astro:before-swap', (event) => {
+          const showConsent = window._showConsentClass ? ` show--consent` : '';
+          event.newDocument.documentElement.className += showConsent;
+        });
+      </script>
+    </div>
+
+    <style is:global>
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+</html>

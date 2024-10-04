@@ -1,0 +1,49 @@
+---
+// This is the FeaturesNew widget component.
+// It is similar to the content widget but accepts multiple sections.
+// Each section can display an image and a list of items.
+
+import type { FeaturesContent as Props } from '~/types'
+import Headline from '../ui/Headline.astro'
+import WidgetWrapper from '../ui/WidgetWrapper.astro'
+import Section from '../ui/Section.astro'
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+  // callToAction,
+  sections = [],
+  isAfterContent = false,
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+  dataAos
+} = Astro.props
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-7xl mx-auto ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''} ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <Headline
+    dataAos={dataAos}
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
+      title:
+        'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
+      subtitle:
+        'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400'
+    }}
+  />
+  <div class='flex flex-col mx-auto max-w-7xl p-4 md:px-8 gap-10'>
+    {sections.map((section) => <Section {...section} dataAos={dataAos} />)}
+  </div>
+</WidgetWrapper>

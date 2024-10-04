@@ -1,0 +1,486 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+// Import getpermalink
+// import { getPermalink } from '~/utils/permalinks'
+// import { Icon } from 'astro-icon/components'
+import FeaturesContent from '~/components/widgets/FeaturesContent.astro';
+
+import 'aos/dist/aos.css'; // AOS styles
+import SocialProofPeople from '~/components/widgets/SocialProofPeople.astro';
+import PricingInteractive from '~/components/widgets/PricingInteractive.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Inicio',
+};
+---
+
+<Layout metadata={metadata} hasInitialBg>
+  <div class="">
+    <!-- 1. Hero block -->
+    <Hero
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Pruébalo gratis',
+          href: '/signup/',
+          icon: 'tabler:rocket',
+        },
+        { text: 'Cómo funciona', href: '#transformation' },
+      ]}
+    >
+      <!-- Title and Subtitle -->
+      <Fragment slot="title">
+        Automatiza tus <span class="text-accent dark:text-white highlight">visitas inmobiliarias</span>
+      </Fragment>
+      <Fragment slot="subtitle">
+        Tu asistente virtual que convierte interesados (leads) en citas programadas sin llamadas. <span
+          class="font-bold">Ahorra 2 horas cada día</span
+        > en visitas y <span class="font-bold">cierra contratos en la mitad de tiempo</span>.
+      </Fragment>
+
+      <!-- Social proof people -->
+      <Fragment slot="content">
+        <SocialProofPeople
+          images={[
+            {
+              src: '~/assets/images/social-proof-people/1.jpg',
+              alt: 'Ana',
+            },
+            {
+              src: '~/assets/images/social-proof-people/2.jpg',
+              alt: 'Carlos',
+            },
+            {
+              src: '~/assets/images/social-proof-people/3.jpg',
+              alt: 'Zayra',
+            },
+            {
+              src: '~/assets/images/social-proof-people/4.jpg',
+              alt: 'Julia',
+            },
+            {
+              src: '~/assets/images/social-proof-people/5.jpg',
+              alt: 'Roberto',
+            },
+            {
+              src: '~/assets/images/social-proof-people/6.jpg',
+              alt: 'Alex',
+            },
+            {
+              src: '~/assets/images/social-proof-people/7.jpg',
+              alt: 'Maria',
+            },
+            {
+              src: '~/assets/images/social-proof-people/8.jpg',
+              alt: 'Carlota',
+            },
+            {
+              src: '~/assets/images/social-proof-people/9.jpg',
+              alt: 'Juan',
+            },
+            {
+              src: '~/assets/images/social-proof-people/10.jpg',
+              alt: 'Antonio',
+            },
+          ]}
+        >
+          <Fragment slot="content">
+            <p class="mt-4 text-center text-base text-gray-900 dark:text-gray-200 md:mt-0 md:ml-4">
+              <span class="block"
+                >Únete a los<!-- -->
+                <span class="font-semibold">24 agentes inmobiliatios</span>
+              </span><span class="block">que ya están ahorrando cientos de horas</span>
+            </p>
+          </Fragment>
+        </SocialProofPeople>
+      </Fragment>
+
+      <!-- Image -->
+      <Fragment slot="image">
+        <div class="w-full flex justify-center">
+          <Image
+            src="~/assets/images/hero-image.webp"
+            alt="Hero image"
+            class="object-cover bg-white dark:p-10 rounded-lg"
+          />
+        </div>
+      </Fragment>
+
+      <!-- Social proof companies -->
+      <!-- <Fragment slot='footer'>
+        <div class='text-center mt-10' data-aos='fade-up'>
+          <p class='text-lg font-semibold text-gray-700 dark:text-gray-300'>
+            Estas inmobiliarias confían en nosotros
+          </p>
+        </div>
+
+      <div
+        class='mt-5 w-full flex flex-wrap items-center justify-center gap-x-12 gap-y-6 lg:mt-10 lg:gap-x-16 lg:gap-y-8'
+        data-aos='fade-up'
+      >
+        <Icon
+          name='logos/logo'
+          class='text-3xl text-[#272727] dark:text-gray-300'
+        />
+      </div>
+    </Hero> -->
+    </Hero>
+
+    <!-- Separator -->
+    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
+    <!-- 2. Problem Agitation -->
+    <Content
+      dataAos="fade-up"
+      items={[
+        {
+          title: 'Tiempo Malgastado en Llamadas',
+          description:
+            'Pasas horas llamando a potenciales clientes, muchos no responden, y repites la misma información una y otra vez.',
+          icon: 'tabler:phone-off',
+        },
+        {
+          title: 'Desorganización y Caos',
+          description:
+            'Agendas caóticas con citas dispersas por la ciudad y un control manual abrumador de interesados y seguimientos.',
+          icon: 'tabler:trending-down',
+        },
+        {
+          title: 'Ineficiencia en Rutas',
+          description:
+            'Rutas diarias ineficientes debido a visitas mal programadas, resultando en tiempo y recursos desperdiciados.',
+          icon: 'tabler:map-pin-off',
+        },
+        {
+          title: 'Oportunidades Perdidas',
+          description:
+            'Pierdes potenciales clientes por no poder responder a tiempo todas las consultas, reduciendo tus posibilidades de cierre.',
+          icon: 'tabler:businessplan',
+        },
+      ]}
+      iconClass="w-10 h-10 p-2 rounded-full border-2 text-red-500 dark:text-red-200 border-red-500 dark:border-red-700"
+    >
+      <Fragment slot="title"> ¿Te suenan estos problemas? </Fragment>
+
+      <Fragment slot="subtitle">
+        Muchas inmobiliarias todavía realizan este trabajo de <span class="font-semibold">manera manual</span> e
+        <span class="font-semibold">ineficiente</span>.
+      </Fragment>
+
+      <Fragment slot="image">
+        <Image
+          src="~/assets/images/problem-agitation.webp"
+          alt="Hero image"
+          class="rounded-lg h-full w-full object-cover"
+        />
+      </Fragment>
+    </Content>
+
+    <!-- Separator -->
+    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
+    <!-- 3. Transformation -->
+    <Content
+      id="transformation"
+      dataAos="fade-up"
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Pruébalo gratis',
+          href: '/signup/',
+          icon: 'tabler:rocket',
+        },
+        { text: 'Funcionalidades', href: '#features' },
+      ]}
+      items={[
+        {
+          title: 'Reservas Automáticas',
+          description:
+            'Envía enlaces de reserva automáticamente y permite que los interesados agenden visitas cuando les convenga, con toda la información del inmueble incluida.',
+          icon: 'tabler:calendar-plus',
+        },
+        {
+          title: 'Optimización de Visitas',
+          description:
+            'Organiza las visitas de forma eficiente, agrupándolas por zona y horario, y mantén un registro claro de cada interesado y propiedad.',
+          icon: 'tabler:route',
+        },
+        {
+          title: 'Recordatorios Inteligentes',
+          description:
+            'Envía recordatorios automáticos para reducir significativamente las ausencias, maximizando tu tiempo y oportunidades.',
+          icon: 'tabler:bell',
+        },
+        {
+          title: 'Información Centralizada',
+          description:
+            'Accede instantáneamente a todos los datos relevantes de cada interesado, facilitando respuestas rápidas y personalizadas.',
+          icon: 'tabler:table',
+        },
+      ]}
+      isReversed
+      iconClass="w-10 h-10 p-2 rounded-full border-2 text-primary dark:text-slate-200 border-primary dark:border-blue-700"
+    >
+      <Fragment slot="title"> AutoVisita: Tu Asistente Virtual Inmobiliario </Fragment>
+
+      <Fragment slot="subtitle"> Automatiza, optimiza y potencia tu gestión de visitas inmobiliarias </Fragment>
+
+      <Fragment slot="image">
+        <div class="w-full flex justify-center">
+          <Image src="~/assets/images/transformation.webp" alt="Hero image" class="rounded-md h-full object-contain" />
+        </div>
+      </Fragment>
+    </Content>
+
+    <!-- Separator -->
+    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
+    <!-- 4. Social Proof -->
+    <Testimonials
+      dataAos="fade-up"
+      title="Lo que dicen nuestros clientes"
+      lgCols={2}
+      testimonials={[
+        {
+          title: 'Revolucionario',
+          testimonial:
+            'AutoVisita nos está encantando. Hemos reducido el tiempo de gestión en un 60% y aumentado las visitas en un 30%. Una herramienta imprescindible.',
+          name: 'Jose García',
+          job: 'CEO of Emissary',
+          brandLink: 'https://www.emissary.es/',
+          image: {
+            src: '~/assets/images/jose-garcia-emissary.jpg',
+            alt: 'Jose Garcia',
+          },
+        },
+        {
+          title: 'Muy contenta',
+          testimonial:
+            'Estamos atendiendo todas las solicitudes sin esfuerzo. Nuestros clientes están encantados de poder reservar cuando quieran y nosotros de no perder oportunidades. Ahora alquilamos un piso en la mitad de tiempo.',
+          name: 'Ana',
+          job: 'Directora de Operaciones en RENTAKE',
+        },
+      ]}
+    />
+
+    <!-- Separator -->
+    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
+    <!-- 5. Features -->
+    <FeaturesContent
+      dataAos="fade-up"
+      id="features"
+      sections={[
+        {
+          icon: 'tabler:circle-1-filled',
+          title: 'Configuración Sencilla',
+          subtitle: 'Empieza a automatizar tus visitas en minutos',
+          points: [
+            'Crea tus listados de propiedades en AutoVisita',
+            'Establece tu horario de disponibilidad para cada propiedad',
+            'Elige entre visitas simultáneas o secuenciales',
+            'Define la duración de las visitas',
+            'Optimiza tu tiempo evitando períodos de inactividad',
+          ],
+          image: {
+            src: '~/assets/images/features-1.webp',
+            alt: 'Facil configuracion',
+          },
+        },
+        {
+          icon: 'tabler:circle-2-filled',
+          title: 'AutoVisita agenda y gestiona tus visitas',
+          subtitle: 'Convierte interesados en visitas sin esfuerzo',
+          points: [
+            'Recibe interesados directamente de plataformas como Idealista',
+            'AutoVisita envía mensajes personalizados automáticamente',
+            'Los leads reciben información detallada de la propiedad',
+            'Incluye un enlace para solicitar una visita',
+            'Reduce el tiempo de respuesta y aumenta las conversiones',
+          ],
+          image: {
+            src: '~/assets/images/features-2.webp',
+            alt: 'Gestion facil',
+          },
+          isReversed: true,
+        },
+        {
+          icon: 'tabler:circle-3-filled',
+          title: 'Recordatorios para evitar plantones',
+          subtitle: 'Minimiza las cancelaciones y los plantones',
+          points: [
+            'Envío automático de solicitudes de confirmación',
+            'Reduce significativamente los "no-shows" o plantones',
+            'Notifica nuevas disponibilidades a otros leads interesados',
+            'Rellena espacios vacíos automáticamente',
+            'Maximiza la eficiencia de tu agenda',
+          ],
+          image: {
+            src: '~/assets/images/features-3.webp',
+            alt: 'Optimización de visitas',
+          },
+        },
+        {
+          icon: 'tabler:circle-4-filled',
+          title: 'Simplifica tu Día a Día',
+          subtitle: 'Céntrate en lo que mejor sabes hacer: vender',
+          points: [
+            'Consulta tus visitas programadas al inicio del día',
+            'Acude a las propiedades según tu agenda optimizada',
+            'Realiza las visitas sin preocuparte por la logística',
+            'Aumenta tu productividad y cierra más contratos',
+            'Mejora la satisfacción de tus clientes con un servicio eficiente',
+          ],
+          image: {
+            src: '~/assets/images/features-4.webp',
+            alt: 'Simplifica tu día a día en la inmobiliaria',
+          },
+          isReversed: true,
+        },
+        // {
+        //   icon: 'tabler:circle-5-filled',
+        //   title: 'Próximamente: Chat Integrado',
+        //   subtitle: 'Comunicación directa y organizada con tus leads',
+        //   points: [
+        //     'Chat con leads directamente desde la página de la propiedad',
+        //     'Mantén todas las conversaciones organizadas por listado',
+        //     'Los leads siempre saben con quién están hablando',
+        //     'Acceso rápido al historial de conversaciones',
+        //     'Mejora la experiencia del cliente y aumenta las conversiones'
+        //   ]
+        // }
+      ]}
+    >
+      <Fragment slot="title">¿Cómo funciona AutoVisita?</Fragment>
+      <Fragment slot="subtitle">
+        Descubre cómo nuestra plataforma te ayuda a automatizar y optimizar tu gestión de visitas inmobiliarias.
+      </Fragment>
+    </FeaturesContent>
+
+    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
+    <!-- 6. About Us -->
+    <HeroText id="about" dataAos="fade-up">
+      <Fragment slot="title">Sobre Nosotros</Fragment>
+      <Fragment slot="subtitle">
+        Nuestra misión es ahorrar tiempo en la gestión inmobiliaria y ayudar a agencias y promotoras ofreciéndo las
+        mejores herramientas y soluciones personalizadas.
+      </Fragment>
+      <Fragment slot="content">
+        <div class="flex items-center justify-center mb-8" data-aos="fade-up">
+          <Image
+            src="~/assets/images/daniel-garcia.jpeg"
+            alt="Daniel Garcia"
+            width={128}
+            height={128}
+            class="shadow-lg object-cover rounded-full h-32 w-32 border border-gray-300 dark:border-gray-700"
+          />
+        </div>
+        <p data-aos="fade-up">
+          AutoVisita fue fundada por Daniel, un ex ingeniero de Tesla, que reconoció la necesidad de las empresas de
+          agilizar sus procesos y tomar mejores decisiones mediante la automatización y los datos. <span
+            class="font-bold"
+          >
+            Creemos que la tecnología debe ser una herramienta de capacitación, no una fuente de frustración.
+          </span>
+        </p>
+        <br />
+        <p data-aos="fade-up">
+          Lo que empezó como un pequeño proyecto en un espacio de co-working se ha convertido en una empresa en la que
+          confían empresas de múltiples sectores, desde fabricantes de automóviles hasta inmobiliarias. No somos meros
+          desarrolladores: resolvemos problemas en estrecha colaboración con nuestros clientes para entender sus
+          necesidades y ofrecer soluciones que tengan impacto.
+        </p>
+      </Fragment>
+    </HeroText>
+
+    <!-- Pricing -->
+
+    <PricingInteractive
+      dataAos="fade-up"
+      id="pricing"
+      title="Empieza a ahorrar tiempo hoy"
+      subtitle="Pruébalo gratis durante 7 días"
+    />
+
+    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
+    <FAQs
+      dataAos="fade-up"
+      title="Preguntas Frecuentes"
+      id="faq"
+      items={[
+        {
+          title: '¿Cómo se integra AutoVisita con mi sistema de gestión actual?',
+          description:
+            'No podría ser más sencillo. Una vez te registres te daremos un correo personalizado para que lo introduzcas en plataformas como idealista o fotocasa. A partir de ahí, cada vez que recibas un nuevo interesado, AutoVisita se encargará de enviarle un mensaje personalizado con un enlace para que pueda reservar una visita en el momento que más le convenga.',
+        },
+        {
+          title: '¿Puedo personalizar los horarios de disponibilidad para las visitas?',
+          description:
+            'Sí, AutoVisita te permite personalizar completamente tus horarios de disponibilidad. Puedes establecer horas específicas para cada día de la semana, bloquear fechas para vacaciones o eventos especiales, y incluso definir diferentes horarios para distintas propiedades o tipos de visitas.',
+        },
+        {
+          title: '¿Cómo maneja AutoVisita la protección de datos de los clientes?',
+          description:
+            'En AutoVisita, la seguridad y privacidad de los datos son nuestra prioridad. Cumplimos con todas las normativas de protección de datos, incluyendo el RGPD. Utilizamos encriptación de extremo a extremo para todas las comunicaciones y almacenamos los datos en servidores seguros dentro de la UE. Además, ofrecemos opciones de configuración para que puedas gestionar el consentimiento y las preferencias de privacidad de tus clientes.',
+        },
+        {
+          title: '¿Qué pasa si un cliente quiere cambiar o cancelar una visita?',
+          description:
+            'AutoVisita facilita los cambios y cancelaciones de visitas. Los clientes pueden modificar su reserva a través del mismo enlace que utilizaron para agendar inicialmente. Si cancelan, el horario se libera automáticamente en tu agenda. Además, puedes configurar notificaciones para ser informado de cualquier cambio y establecer políticas de cancelación personalizadas.',
+        },
+        {
+          title: '¿Ofrece AutoVisita análisis y reportes sobre las visitas y conversiones?',
+          description:
+            'Sí, AutoVisita incluye un robusto sistema de análisis y reportes. Puedes ver estadísticas sobre el número de visitas programadas, tasas de conversión, propiedades más populares, y mucho más. Ofrecemos dashboards personalizables y la opción de generar informes periódicos que se envían directamente a tu correo electrónico.',
+        },
+        {
+          title: '¿Puedo probar AutoVisita antes de comprometerme a una suscripción?',
+          description:
+            'Por supuesto. Ofrecemos una prueba gratuita de 7 días de AutoVisita con todas las funcionalidades incluidas. Durante este período, tendrás acceso completo a la plataforma y podrás evaluar cómo se adapta a las necesidades de tu agencia. Además, nuestro equipo de soporte estará disponible para ayudarte a configurar todo y responder a cualquier pregunta que puedas tener.',
+        },
+        {
+          title: '¿Seguiré recibiendo emails de las plataformas?',
+          description:
+            '¡Claro! Puedes elegir entre seguir recibiendo las notificaciones de plataformas como Idealista o no.',
+        },
+      ]}
+    />
+
+    <CallToAction
+      dataAos="fade-up"
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Pruébalo gratis',
+          href: '/signup/',
+          icon: 'tabler:rocket',
+        },
+      ]}
+    >
+      <Fragment slot="title"> ¿Listo para empezar a ahorrar tiempo y aumentar tus ventas? </Fragment>
+
+      <Fragment slot="subtitle">
+        Prueba AutoVisita gratis durante 7 días y descubre cómo puede transformar tu gestión de visitas inmobiliarias.
+      </Fragment>
+    </CallToAction>
+
+    <script>
+      // Put this script in the pages that use AOS
+      import { aosInit } from '~/scripts/aos';
+      // runs on initial page load
+      aosInit();
+      // runs on view transitions navigation
+      document.addEventListener('astro:after-swap', aosInit);
+    </script>
+  </div>
+</Layout>

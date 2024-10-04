@@ -1,0 +1,38 @@
+---
+import Layout from '~/layouts/PageLayout.astro'
+import Features2 from '~/components/widgets/Features2.astro'
+import ContactForm from '~/components/forms/ContactForm.tsx'
+
+const metadata = {
+  title: 'Contact'
+}
+---
+
+<Layout metadata={metadata}>
+  <ContactForm client:idle />
+
+  <Features2
+    title='¡Estamos aquí para ayudarte!'
+    items={[
+      {
+        title: 'Ventas',
+        description: `Si eres una empresa y quieres solicitar una cotización, tienes preguntas sobre personalización, licencias para uso comercial, o deseas información sobre una función específica, ¡envíanos un mensaje!`
+      },
+      {
+        title: 'Soporte técnico',
+        description:
+          'Consulta cualquier problema técnico que tengas, como dificultades de configuración u otros desafíos técnicos relacionados con el uso de AutoVisita.'
+      },
+      {
+        title: 'Oportunidades de colaboración',
+        description:
+          'Si eres un desarrollador, diseñador, o profesional de marketing y te gustaría colaborar con nosotros, ¡háznoslo saber!'
+      }
+      // {
+      //   title: 'Phone',
+      //   description: '+1 (111) 111-111',
+      //   icon: 'tabler:headset',
+      // },
+    ]}
+  />
+</Layout>

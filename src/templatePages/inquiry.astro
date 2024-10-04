@@ -1,0 +1,12 @@
+---
+import InquiryForm from '~/components/forms/InquiryForm'
+import PageLayout from '~/layouts/PageLayout.astro'
+
+const metadata = {
+  title: 'Inquiry'
+}
+---
+
+<PageLayout metadata={metadata} hasInitialBg>
+  <InquiryForm client:idle />
+</PageLayout>
