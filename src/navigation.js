@@ -3,7 +3,7 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Descúbrelo',
+      text: 'How it works',
       href: '/#transformation',
     },
     {
@@ -13,14 +13,10 @@ export const headerData = {
     {
       text: 'Blog',
       href: getBlogPermalink(),
-    },
-    {
-      text: 'Precios',
-      href: '/#pricing',
     }
   ],
   actions: [{
-    text: 'Pruébalo gratis', variant: "primary",
+    text: 'Start writing now', variant: "primary",
     icon: 'tabler:rocket',
     href: '/signup/',
     // target: '_blank'
@@ -30,25 +26,25 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Soporte',
+      title: 'Support',
       links: [
-        { text: 'Contacto', href: getPermalink('/contact/') },
+        { text: 'Contact', href: getPermalink('/contact/') },
         { text: 'Blog', href: getBlogPermalink() },
-        { text: 'Guías', href: getPermalink('/category/guias/') },
+        { text: 'Guides', href: getPermalink('/category/guides/') },
       ],
     },
     {
-      title: 'Compañía',
+      title: 'postifyAI',
       links: [
-        { text: 'Cómo funciona autovisita', href: '/#features' },
-        { text: 'Sobre nosotros', href: '/#about' },
+        { text: 'Features', href: '/#features' },
+        { text: 'About us', href: '/#about' },
 
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Términos y condiciones', href: getPermalink('/terms') },
-    { text: 'Política de privacidad', href: getPermalink('/privacy') },
+    { text: 'Terms and Conditions', href: getPermalink('/terms') },
+    { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
     // { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/autovisita' },
@@ -56,8 +52,8 @@ export const footerData = {
   ],
   footNote: `
   <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
-  >© 2024 <a href="https://autovisita.es/" class="hover:underline"
-    >AutoVisita</a
+  >© 2024 <a href="https://postifyai.com/" class="hover:underline"
+    >postifyAI</a
   >
 </span>
   `,
