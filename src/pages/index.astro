@@ -4,7 +4,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import Testimonials from '~/components/widgets/Testimonials.astro';
+// import Testimonials from '~/components/widgets/Testimonials.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 
 // Import getpermalink
@@ -244,9 +244,9 @@ const metadata = {
     <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
 
     <!-- 4. Social Proof -->
-    <Testimonials
+    <!-- <Testimonials
       dataAos="fade-up"
-      title="Lo que dicen nuestros clientes"
+      title="What our customers say"
       lgCols={2}
       testimonials={[
         {
@@ -269,7 +269,7 @@ const metadata = {
           job: 'Directora de Operaciones en RENTAKE',
         },
       ]}
-    />
+    /> -->
 
     <!-- Separator -->
     <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
@@ -281,88 +281,107 @@ const metadata = {
       sections={[
         {
           icon: 'tabler:circle-1-filled',
-          title: 'Configuración Sencilla',
-          subtitle: 'Empieza a automatizar tus visitas en minutos',
+          title: 'Easy Setup',
+          subtitle: 'Start generating SEO-optimized content in minutes',
           points: [
-            'Crea tus listados de propiedades en AutoVisita',
-            'Establece tu horario de disponibilidad para cada propiedad',
-            'Elige entre visitas simultáneas o secuenciales',
-            'Define la duración de las visitas',
-            'Optimiza tu tiempo evitando períodos de inactividad',
+            'Choose between open-source (self-hosted) or cloud version',
+            'Set up your brand profile with key information',
+            'Input your target keywords and phrases',
+            'Select from various article types (guides, listicles, comparisons)',
+            'Start generating content with just a few clicks',
           ],
           image: {
             src: '~/assets/images/features-1.webp',
-            alt: 'Facil configuracion',
+            alt: 'PostifyAI easy setup process',
           },
+          isReversed: true,
         },
         {
           icon: 'tabler:circle-2-filled',
-          title: 'AutoVisita agenda y gestiona tus visitas',
-          subtitle: 'Convierte interesados en visitas sin esfuerzo',
+          title: 'Intelligent Content Research',
+          subtitle: 'Leverage AI-powered competitor and keyword analysis',
           points: [
-            'Recibe interesados directamente de plataformas como Idealista',
-            'AutoVisita envía mensajes personalizados automáticamente',
-            'Los leads reciben información detallada de la propiedad',
-            'Incluye un enlace para solicitar una visita',
-            'Reduce el tiempo de respuesta y aumenta las conversiones',
+            'Automatic search engine scraping for relevant content',
+            'Competitor analysis to identify top-performing articles',
+            'Keyword density and placement optimization',
+            'Identification of trending topics in your niche',
+            'Generation of content outlines based on top-ranking articles',
           ],
           image: {
             src: '~/assets/images/features-2.webp',
-            alt: 'Gestion facil',
+            alt: 'PostifyAI content research and analysis',
           },
-          isReversed: true,
         },
         {
           icon: 'tabler:circle-3-filled',
-          title: 'Recordatorios para evitar plantones',
-          subtitle: 'Minimiza las cancelaciones y los plantones',
+          title: 'Multi-step Article Generation',
+          subtitle: 'Create high-quality, SEO-optimized content effortlessly',
           points: [
-            'Envío automático de solicitudes de confirmación',
-            'Reduce significativamente los "no-shows" o plantones',
-            'Notifica nuevas disponibilidades a otros leads interesados',
-            'Rellena espacios vacíos automáticamente',
-            'Maximiza la eficiencia de tu agenda',
+            'AI-powered content writing in multiple stages',
+            'Automatic integration of researched information',
+            'SEO optimization throughout the writing process',
+            'Generation of engaging titles and meta descriptions',
+            'Creation of structured content with headings and subheadings',
           ],
           image: {
             src: '~/assets/images/features-3.webp',
-            alt: 'Optimización de visitas',
-          },
-        },
-        {
-          icon: 'tabler:circle-4-filled',
-          title: 'Simplifica tu Día a Día',
-          subtitle: 'Céntrate en lo que mejor sabes hacer: vender',
-          points: [
-            'Consulta tus visitas programadas al inicio del día',
-            'Acude a las propiedades según tu agenda optimizada',
-            'Realiza las visitas sin preocuparte por la logística',
-            'Aumenta tu productividad y cierra más contratos',
-            'Mejora la satisfacción de tus clientes con un servicio eficiente',
-          ],
-          image: {
-            src: '~/assets/images/features-4.webp',
-            alt: 'Simplifica tu día a día en la inmobiliaria',
+            alt: 'PostifyAI article generation process',
           },
           isReversed: true,
         },
-        // {
-        //   icon: 'tabler:circle-5-filled',
-        //   title: 'Próximamente: Chat Integrado',
-        //   subtitle: 'Comunicación directa y organizada con tus leads',
-        //   points: [
-        //     'Chat con leads directamente desde la página de la propiedad',
-        //     'Mantén todas las conversaciones organizadas por listado',
-        //     'Los leads siempre saben con quién están hablando',
-        //     'Acceso rápido al historial de conversaciones',
-        //     'Mejora la experiencia del cliente y aumenta las conversiones'
-        //   ]
-        // }
+        {
+          icon: 'tabler:circle-4-filled',
+          title: 'Versatile Article Types',
+          subtitle: 'Cater to various content needs with multiple formats',
+          points: [
+            'In-depth guides for comprehensive topic coverage',
+            'Engaging listicles for easy consumption',
+            'Comparative articles for product or service analysis',
+            'How-to tutorials for step-by-step instructions',
+            'Customizable templates for consistent brand voice',
+          ],
+          image: {
+            src: '~/assets/images/features-4.webp',
+            alt: 'PostifyAI versatile article types',
+          },
+        },
+        {
+          icon: 'tabler:circle-5-filled',
+          title: 'Brand Integration',
+          subtitle: 'Seamlessly incorporate your brand identity into every article',
+          points: [
+            'Automatic inclusion of brand-specific keywords and phrases',
+            'Consistent tone and style matching your brand guidelines',
+            'Integration of brand messaging and unique selling points',
+            'Customizable content templates aligned with your brand',
+            'Option to include brand-specific calls-to-action',
+          ],
+          image: {
+            src: '~/assets/images/features-5.webp',
+            alt: 'PostifyAI brand integration features',
+          },
+          isReversed: true,
+        },
+        {
+          icon: 'tabler:circle-6-filled',
+          title: 'Flexible Deployment Options',
+          subtitle: 'Choose the setup that best fits your needs and resources',
+          points: [
+            'Open-source version for complete control and customization',
+            'Docker support for easy self-hosting and deployment',
+            'Cloud version for instant access without setup hassles',
+            'API integration for seamless incorporation into existing workflows',
+            'Regular updates and improvements in both versions',
+          ],
+          image: {
+            src: '~/assets/images/features-6.webp',
+            alt: 'PostifyAI deployment options',
+          },
+        },
       ]}
     >
-      <Fragment slot="title">¿Cómo funciona AutoVisita?</Fragment>
-      <Fragment slot="subtitle">
-        Descubre cómo nuestra plataforma te ayuda a automatizar y optimizar tu gestión de visitas inmobiliarias.
-      </Fragment>
+      <Fragment slot="title">How does it work?</Fragment>
+      <Fragment slot="subtitle"> Find out the features that make postifyAI unique </Fragment>
     </FeaturesContent>
 
     <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
