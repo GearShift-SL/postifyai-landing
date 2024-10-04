@@ -1,7 +1,7 @@
 services:
   astro:
     restart: unless-stopped
-    image: dockerregistry.hlab.es/autovisita-landing:latest
+    image: dockerregistry.hlab.es/postifyai-landing:latest
     ports:
       - '4321:4321'
     env_file:
