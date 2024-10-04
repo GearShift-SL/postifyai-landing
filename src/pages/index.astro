@@ -14,7 +14,7 @@ import FeaturesContent from '~/components/widgets/FeaturesContent.astro';
 
 import 'aos/dist/aos.css'; // AOS styles
 import SocialProofPeople from '~/components/widgets/SocialProofPeople.astro';
-import PricingInteractive from '~/components/widgets/PricingInteractive.astro';
+// import PricingInteractive from '~/components/widgets/PricingInteractive.astro';
 import Image from '~/components/common/Image.astro';
 
 const metadata = {
@@ -384,93 +384,105 @@ const metadata = {
       <Fragment slot="subtitle"> Find out the features that make postifyAI unique </Fragment>
     </FeaturesContent>
 
+    <CallToAction
+      dataAos="fade-up"
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Try it for free',
+          href: '/signup/',
+          icon: 'tabler:rocket',
+        },
+      ]}
+    >
+      <Fragment slot="title">Ready to start saving time and boosting your SEO?</Fragment>
+
+      <Fragment slot="subtitle">
+        Use postifyAI for free, it's open sourced! <br />
+        Or try our cloud version for a hassle-free experience.
+      </Fragment>
+    </CallToAction>
+
     <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
 
     <!-- 6. About Us -->
     <HeroText id="about" dataAos="fade-up">
-      <Fragment slot="title">Sobre Nosotros</Fragment>
+      <Fragment slot="title">About Us</Fragment>
       <Fragment slot="subtitle">
-        Nuestra misión es ahorrar tiempo en la gestión inmobiliaria y ayudar a agencias y promotoras ofreciéndo las
-        mejores herramientas y soluciones personalizadas.
+        Our mission is to save time in content creation and help businesses and marketers by offering the best
+        AI-powered SEO content generation tools and customized solutions.
       </Fragment>
       <Fragment slot="content">
         <div class="flex items-center justify-center mb-8" data-aos="fade-up">
           <Image
             src="~/assets/images/daniel-garcia.jpeg"
-            alt="Daniel Garcia"
+            alt="PostifyAI Founder"
             width={128}
             height={128}
             class="shadow-lg object-cover rounded-full h-32 w-32 border border-gray-300 dark:border-gray-700"
           />
         </div>
         <p data-aos="fade-up">
-          AutoVisita fue fundada por Daniel, un ex ingeniero de Tesla, que reconoció la necesidad de las empresas de
-          agilizar sus procesos y tomar mejores decisiones mediante la automatización y los datos. <span
-            class="font-bold"
-          >
-            Creemos que la tecnología debe ser una herramienta de capacitación, no una fuente de frustración.
+          PostifyAI was founded by Daniel, an entrepreneur who, while building his products, identified the need for
+          businesses to streamline their content creation processes and make better decisions through automation and
+          data-driven insights. <span class="font-bold"
+            ><br /><br />
+            We believe that technology should be an empowering tool, not a source of frustration.
           </span>
-        </p>
-        <br />
-        <p data-aos="fade-up">
-          Lo que empezó como un pequeño proyecto en un espacio de co-working se ha convertido en una empresa en la que
-          confían empresas de múltiples sectores, desde fabricantes de automóviles hasta inmobiliarias. No somos meros
-          desarrolladores: resolvemos problemas en estrecha colaboración con nuestros clientes para entender sus
-          necesidades y ofrecer soluciones que tengan impacto.
         </p>
       </Fragment>
     </HeroText>
 
     <!-- Pricing -->
 
-    <PricingInteractive
+    <!-- <PricingInteractive
       dataAos="fade-up"
       id="pricing"
       title="Empieza a ahorrar tiempo hoy"
       subtitle="Pruébalo gratis durante 7 días"
-    />
+    /> -->
 
     <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
 
     <FAQs
       dataAos="fade-up"
-      title="Preguntas Frecuentes"
+      title="Frequently Asked Questions"
       id="faq"
       items={[
         {
-          title: '¿Cómo se integra AutoVisita con mi sistema de gestión actual?',
+          title: 'Is postifyAI really free to use?',
           description:
-            'No podría ser más sencillo. Una vez te registres te daremos un correo personalizado para que lo introduzcas en plataformas como idealista o fotocasa. A partir de ahí, cada vez que recibas un nuevo interesado, AutoVisita se encargará de enviarle un mensaje personalizado con un enlace para que pueda reservar una visita en el momento que más le convenga.',
+            'Yes, postifyAI is an open-source project, and you can use it for free. You can also opt for our cloud-based subscription service, which offers additional features and support.',
         },
         {
-          title: '¿Puedo personalizar los horarios de disponibilidad para las visitas?',
+          title: 'How does postifyAI integrate with my existing content management system?',
           description:
-            'Sí, AutoVisita te permite personalizar completamente tus horarios de disponibilidad. Puedes establecer horas específicas para cada día de la semana, bloquear fechas para vacaciones o eventos especiales, y incluso definir diferentes horarios para distintas propiedades o tipos de visitas.',
+            'Integration is straightforward. postifyAI can export content in markdown, which is compatible with most popular CMS platforms. Otherwise you can just copy and paste the content.',
         },
         {
-          title: '¿Cómo maneja AutoVisita la protección de datos de los clientes?',
+          title: 'Can I customize the tone and style of the generated content?',
           description:
-            'En AutoVisita, la seguridad y privacidad de los datos son nuestra prioridad. Cumplimos con todas las normativas de protección de datos, incluyendo el RGPD. Utilizamos encriptación de extremo a extremo para todas las comunicaciones y almacenamos los datos en servidores seguros dentro de la UE. Además, ofrecemos opciones de configuración para que puedas gestionar el consentimiento y las preferencias de privacidad de tus clientes.',
+            'This feature is coming soon! postifyAI allows you to define your brand voice and style preferences. You can set parameters for tone (formal, casual, humorous, etc.), writing style, and even specify certain phrases or terminologies to include or avoid. The AI will then generate content that aligns with your brand guidelines.',
         },
         {
-          title: '¿Qué pasa si un cliente quiere cambiar o cancelar una visita?',
+          title: 'What types of content can postifyAI generate?',
           description:
-            'AutoVisita facilita los cambios y cancelaciones de visitas. Los clientes pueden modificar su reserva a través del mismo enlace que utilizaron para agendar inicialmente. Si cancelan, el horario se libera automáticamente en tu agenda. Además, puedes configurar notificaciones para ser informado de cualquier cambio y establecer políticas de cancelación personalizadas.',
+            'postifyAI is versatile and can generate various types of content, including blog guides, listicles, comparisons, etc. We offer different templates and structures for each content type, ensuring that the output is not only SEO-optimized but also formatted appropriately for its intended use.',
         },
         {
-          title: '¿Ofrece AutoVisita análisis y reportes sobre las visitas y conversiones?',
+          title: 'Can I try postifyAI before committing to a subscription?',
           description:
-            'Sí, AutoVisita incluye un robusto sistema de análisis y reportes. Puedes ver estadísticas sobre el número de visitas programadas, tasas de conversión, propiedades más populares, y mucho más. Ofrecemos dashboards personalizables y la opción de generar informes periódicos que se envían directamente a tu correo electrónico.',
+            "postifyAI is totally free! Since it's an open-source project, you can try it out without any commitment. If you prefer a cloud-based solution, we do offer a hassle-free subscription service with additional features and support.",
         },
         {
-          title: '¿Puedo probar AutoVisita antes de comprometerme a una suscripción?',
+          title: 'How does postifyAI ensure the generated content is original and plagiarism-free?',
           description:
-            'Por supuesto. Ofrecemos una prueba gratuita de 7 días de AutoVisita con todas las funcionalidades incluidas. Durante este período, tendrás acceso completo a la plataforma y podrás evaluar cómo se adapta a las necesidades de tu agencia. Además, nuestro equipo de soporte estará disponible para ayudarte a configurar todo y responder a cualquier pregunta que puedas tener.',
+            'postifyAI uses advanced natural language processing techniques to generate original content. Each piece is created from scratch based on the provided keywords and parameters. We also integrate with leading plagiarism checking tools, allowing you to verify the originality of the content before publication. If any potential issues are detected, the AI can regenerate the content to ensure uniqueness.',
         },
         {
-          title: '¿Seguiré recibiendo emails de las plataformas?',
+          title: 'Can postifyAI optimize content for specific search engines or locales?',
           description:
-            '¡Claro! Puedes elegir entre seguir recibiendo las notificaciones de plataformas como Idealista o no.',
+            'Yes, postifyAI can optimize content for different search engines and various locales. You can specify your target geographic location, and the AI will adjust its optimization strategies accordingly, including keyword usage, content structure, and even cultural nuances when relevant.',
         },
       ]}
     />
@@ -480,16 +492,17 @@ const metadata = {
       actions={[
         {
           variant: 'primary',
-          text: 'Pruébalo gratis',
+          text: 'Try it for free',
           href: '/signup/',
           icon: 'tabler:rocket',
         },
       ]}
     >
-      <Fragment slot="title"> ¿Listo para empezar a ahorrar tiempo y aumentar tus ventas? </Fragment>
+      <Fragment slot="title">Ready to start saving time and boosting your SEO?</Fragment>
 
       <Fragment slot="subtitle">
-        Prueba AutoVisita gratis durante 7 días y descubre cómo puede transformar tu gestión de visitas inmobiliarias.
+        Use postifyAI for free, it's open sourced! <br />
+        Or try our cloud version for a hassle-free experience.
       </Fragment>
     </CallToAction>
 
