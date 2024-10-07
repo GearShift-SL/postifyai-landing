@@ -21,6 +21,7 @@ export const headerData = {
     href: '/signup/',
     // target: '_blank'
   }],
+  showGithub: true,
 };
 
 export const footerData = {
@@ -48,6 +49,7 @@ export const footerData = {
   ],
   socialLinks: [
     // { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/autovisita' },
+    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/dontic/postifyai' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `

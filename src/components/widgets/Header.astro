@@ -33,6 +33,7 @@ export interface Props {
   isFullWidth?: boolean;
   showToggleTheme?: boolean;
   showRssFeed?: boolean;
+  showGithub?: boolean;
   position?: string;
 }
 
@@ -45,6 +46,7 @@ const {
   isFullWidth = false,
   showToggleTheme = false,
   showRssFeed = false,
+  showGithub = false,
   position = 'center',
 } = Astro.props;
 
@@ -161,6 +163,18 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             </span>
           ) : (
             ''
+          )
+        }
+        {
+          showGithub && (
+            <a
+              class="text-gray-800 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+              aria-label="GitHub"
+              target="_blank"
+              href={'https://github.com/dontic/postifyai'}
+            >
+              <Icon name="github" class="w-8 h-8" />
+            </a>
           )
         }
       </div>
