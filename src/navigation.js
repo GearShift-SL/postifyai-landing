@@ -18,7 +18,7 @@ export const headerData = {
   actions: [{
     text: 'Start writing now', variant: "primary",
     icon: 'tabler:rocket',
-    href: '/signup/',
+    href: '/pricing/',
     // target: '_blank'
   }],
   showGithub: true,

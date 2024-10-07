@@ -1,0 +1,131 @@
+---
+import { Icon } from 'astro-icon/components';
+import SignupForm from '~/components/forms/SignupForm';
+import Hero from '~/components/widgets/Hero.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+---
+
+<PageLayout>
+  <Hero title="Get in early">
+    <Fragment slot="subtitle">
+      postifyAI is currently under development. By joining the waitlist you will be among the first to try it out.
+    </Fragment>
+
+    <Fragment slot="content">
+      <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+          <slot
+            ><slot
+              ><div
+                class="border text-card-foreground shadow-sm bg-primary p-3 md:p-8 rounded-xl min-h-[600px] flex-grow border-blue-500/20"
+              >
+                <div class="space-y-3">
+                  <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="font-semibold tracking-tight text-3xl text-white">postifyAI Pro</h3><p
+                      class="text-[0.875rem] leading-[1.25rem] text-white/80"
+                    >
+                      For professional use and teams.
+                    </p>
+                    <div>
+                      <div class="flex justify-center items-center space-x-3">
+                        <h3 class="text-4xl text-white line-through">$12</h3>
+                        <h3 class="text-4xl text-white">$6/article</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6 pt-0">
+                    <a
+                      class="flex items-center justify-center rounded-full border-[1px] bg-white text-gray-500 hover:bg-gray-100 disabled:bg-gray-100 border-black/10 font-[400] text-[1.125rem] px-[1.25em] h-[2.5rem] w-full"
+                      href="#signup">Get Started with Pro</a
+                    >
+                  </div>
+                  <div class="flex items-center p-6 pt-0">
+                    <div class="space-y-8">
+                      <div>
+                        <ul class="list-none p-0 space-y-3">
+                          {
+                            [
+                              'No setup required',
+                              'Just start generating articles',
+                              'Web text editor',
+                              'History of generated articles',
+                              'Collaborate with unlimited team members',
+                              'Publish directly to your CMS',
+                              'Priority support',
+                            ].map((item) => (
+                              <li class="flex text-start">
+                                <Icon
+                                  name="tabler:check"
+                                  class="w-6 h-6 stroke-[4px] border-[2px] border-white justify-center rounded-full text-white"
+                                />
+                                <span class="ml-2 text-lg text-white justify-start"> {item} </span>
+                              </li>
+                            ))
+                          }
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div></slot
+            ></slot
+          ><slot
+            ><slot
+              ><div
+                class="border text-card-foreground shadow-sm bg-white p-3 md:p-8 rounded-xl min-h-[600px] flex-grow"
+              >
+                <div class="space-y-4">
+                  <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="font-semibold tracking-tight text-2xl">postifyAI (Open Source)</h3><p class="text-lg">
+                      For personal use.
+                    </p><h3 class="text-4xl">Free</h3>
+                  </div><div class="p-6 pt-0">
+                    <a
+                      class="flex items-center justify-center rounded-full border-[1px] text-gray-500 disabled:bg-gray-100 border-black/10 font-[400] text-[1.125rem] px-[1.25em] h-[2.5rem] w-full bg-gray-100 hover:bg-gray-200"
+                      href="https://github.com/dontic/postifyai"
+                      target="_blank">Try for Free</a
+                    >
+                  </div><div class="flex items-center p-6 pt-0">
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <Icon
+                          name="tabler:check"
+                          class="w-6 h-6 stroke-[4px] border-[2px] border-gray-500 justify-center rounded-full text-gray-500"
+                        />
+                        <p class="ml-2 text-gray-500">Core features, including:</p>
+                      </div><p class="pl-8">
+                        Generate articles from keywords, multiple article types, plug your brand in the article, free
+                        online automatic research, use your favorite AI provider + much more.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div></slot
+            ></slot
+          >
+        </div>
+
+        <div id="signup" class="pt-3">
+          <SignupForm client:idle />
+        </div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <script>
+    function updateSeatsRemaining() {
+      fetch('/api/seats-remaining/')
+        .then((response) => response.json())
+        .then((data) => {
+          const seatsRemainingElement = document.getElementById('seats-remaining');
+          if (seatsRemainingElement) {
+            seatsRemainingElement.textContent = data.seatsRemaining.toString() + ' ';
+          }
+        })
+        .catch((error) => console.error('Error fetching seats remaining:', error));
+    }
+
+    // Run the update function when the page loads
+    document.addEventListener('astro:page-load', updateSeatsRemaining);
+  </script>
+</PageLayout>
