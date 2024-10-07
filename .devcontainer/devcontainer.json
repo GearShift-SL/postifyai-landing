@@ -1,9 +1,13 @@
 // devcontainer.json
 {
   "name": "GearShift Landing",
-  "shutdownAction": "stopCompose", // Container behavior on VSCode close: none, stopContainer (default for image or Dockerfile), and stopCompose (default for Docker Compose)
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "node",
+  "shutdownAction": "stopContainer", // Container behavior on VSCode close: none, stopContainer (default for image or Dockerfile), and stopCompose (default for Docker Compose)
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  // "dockerComposeFile": "docker-compose.yml",
+  // "service": "node",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   // Extensions and settings
   "customizations": {
@@ -31,9 +35,10 @@
         // Prettier settings
         "prettier.enable": true,
         "editor.formatOnSave": true, // Format files on save
-        "prettier.documentSelectors": ["**/*.astro"],
+        "prettier.documentSelectors": [
+          "**/*.astro"
+        ],
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-
         "[typescript]": {
           // TypeScript settings
           "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -57,7 +62,6 @@
         "prettier.trailingComma": "none",
         "prettier.singleQuote": false,
         "prettier.printWidth": 80,
-
         // Window colors
         "workbench.colorCustomizations": {
           "activityBar.background": "#298dff",
@@ -67,7 +71,9 @@
         // Prevent json schema warnings
         "json.schemas": [
           {
-            "fileMatch": ["/package.json"],
+            "fileMatch": [
+              "/package.json"
+            ],
             "url": "https://json.schemastore.org/package",
             "schema": true
           }
