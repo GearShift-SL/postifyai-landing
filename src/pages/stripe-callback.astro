@@ -1,0 +1,78 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Gracias por tu compra',
+  description: 'Gracias por comprar nuestra herramienta. ¡Prepárate para el lanzamiento el 15 de agosto!',
+  index: false, // Don't index this page
+};
+---
+
+<PageLayout metadata={metadata}>
+  <div class="container mx-auto px-4 py-16 max-w-4xl">
+    <div class="text-center">
+      {/* Success Icon */}
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-green-400 rounded-full">
+          <svg
+            class="w-10 h-10 text-green-100 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+      </div>
+
+      {/* Thank You Message */}
+      <h1 class="text-4xl font-bold text-gray-900  mb-6">Thank you for your interest! 🎉</h1>
+
+      <p class="text-xl text-gray-600  mb-8 leading-relaxed">
+        We are working hard on getting Postify AI ready for you.
+      </p>
+
+      {/* Launch Date Information */}
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold text-blue-900 mb-4">🚀 Launch Date</h2>
+        <p class="text-lg text-blue-800 mb-2">Our tool will be ready and available on:</p>
+        <p class="text-3xl font-bold text-blue-900">September 15, 2025</p>
+        <p class="text-sm text-blue-700 mt-2">
+          You will receive an email notification when it is ready to use!
+        </p>
+      </div>
+
+      {/* What's Next */}
+      <div class="bg-gray-50 rounded-lg p-6 mb-8">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">What's next?</h3>
+        <ul class="text-left text-gray-600 space-y-2 max-w-md mx-auto">
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            You will receive a confirmation email soon
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            We will notify you when the tool is ready on September 15
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            You will have access to all premium features
+          </li>
+        </ul>
+      </div>
+
+
+
+     
+
+      {/* Additional Support */}
+      <div class="mt-12 text-sm text-gray-500">
+        <p>
+          Have questions? Don't hesitate to <a href="/contact/" class="text-blue-600 hover:underline"
+            >contact us</a
+          > at any time.
+        </p>
+      </div>
+    </div>
+  </div>
+</PageLayout>

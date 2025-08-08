@@ -1,0 +1,80 @@
+---
+// Testimonials data
+const testimonials = [
+  {
+    name: 'Marta',
+    rating: 5,
+    text: 'I used to spend countless hours trying to find ideas for my company\'s blog. Now I can just click "create post" and Postify AI does the rest.',
+    verified: true,
+  },
+  {
+    name: 'John',
+    rating: 5,
+    text: 'Best investment I made for my business. I used to delegate creating blog posts to my team, but they are not SEO experts and it was taking a lot of time to rank on Google. Postify AI writes a cool article in seconds.',
+    verified: true,
+  },
+  {
+    name: 'Rebecca',
+    rating: 4,
+    text: 'I don\'t think it has the quality of an expert human writer, but honestly, for the price it\'s a great investment, it helps us with ideas and content, we just have to revise the article in a couple of minutes and post it.',
+    verified: true,
+  },
+];
+---
+
+<section class="py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    {/* Section Title */}
+    <h2 class="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-900 max-w-4xl mx-auto">
+      People <span class="text-primary">can't stop talking</span> about Postify AI
+    </h2>
+
+    {/* Testimonials Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {
+        testimonials.map((testimonial) => (
+          <div class="bg-white rounded-2xl p-6 shadow-sm border-2 border-primary hover:border-secondary hover:shadow-md transition-all duration-300 flex flex-col h-full">
+            {/* Star Rating */}
+            <div class="flex items-center mb-4">
+              {Array.from({ length: 5 }, (_, i) => (
+                <span class={`text-4xl ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
+              ))}
+            </div>
+
+            {/* Testimonial Text */}
+            <blockquote class="text-gray-700 leading-relaxed flex-1 mb-6">"{testimonial.text}"</blockquote>
+
+            {/* Customer Info */}
+            <div class="flex items-center justify-between mt-auto">
+              <div class="font-semibold text-gray-900">{testimonial.name}</div>
+
+              {testimonial.verified && (
+                <div class="flex items-center text-xs text-gray-500 bg-gray-50 px-3 py-1 rounded-full">
+                  <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                    VERIFIED CUSTOMER
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Additional custom styles if needed */
+  .testimonial-card {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-2px);
+  }
+</style>

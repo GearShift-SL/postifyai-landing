@@ -1,0 +1,127 @@
+---
+// FAQ.astro
+
+interface FAQItem {
+  question: string;
+  answer?: string;
+  href?: string;
+}
+
+const faq: FAQItem[] = [
+  {
+    question: 'What does Postify AI do exactly?',
+    answer:
+      'Postify AI creates blog posts that are optimized for SEO. Publishing these to your website will boost your website\'s ranking on Google and other search engines.'
+  },
+  {
+    question: 'Is Postify AI really free to use?',
+    answer:
+      'Yes, postifyAI is an open-source project, and you can use it for free. You can also opt for our cloud-based subscription service, which offers additional features and support.'
+  },
+  {
+    question: 'How does postifyAI integrate with my existing content management system?',
+    answer:
+      'Integration is straightforward. postifyAI can export content in markdown, which is compatible with most popular CMS platforms. Otherwise you can just copy and paste the content.'
+  },
+  {
+    question: 'Can I customize the tone and style of the generated content?',
+    answer:
+      'This feature is coming soon! postifyAI allows you to define your brand voice and style preferences. You can set parameters for tone (formal, casual, humorous, etc.), writing style, and even specify certain phrases or terminologies to include or avoid. The AI will then generate content that aligns with your brand guidelines.'
+  },
+  {
+    question: 'What types of content can postifyAI generate?',
+    answer:
+      'postifyAI is versatile and can generate various types of content, including blog guides, listicles, comparisons, etc. We offer different templates and structures for each content type, ensuring that the output is not only SEO-optimized but also formatted appropriately for its intended use.'
+  },
+  {
+    question: 'Can I try postifyAI before committing to a subscription?',
+    answer:
+      'postifyAI is totally free! Since it\'s an open-source project, you can try it out without any commitment. If you prefer a cloud-based solution, we do offer a hassle-free subscription service with additional features and support.'
+  },
+  {
+    question: 'How does postifyAI ensure the generated content is original and plagiarism-free?',
+    answer: 'postifyAI uses advanced natural language processing techniques to generate original content. Each piece is created from scratch based on the provided keywords and parameters. We also integrate with leading plagiarism checking tools, allowing you to verify the originality of the content before publication. If any potential issues are detected, the AI can regenerate the content to ensure uniqueness.'
+  },
+  {
+    question: 'Can postifyAI optimize content for specific search engines or locales?',
+    answer: 'Yes, postifyAI can optimize content for different search engines and various locales. You can specify your target geographic location, and the AI will adjust its optimization strategies accordingly, including keyword usage, content structure, and even cultural nuances when relevant.'
+  }
+];
+---
+
+<div class="w-full max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+  <div class="text-center mb-12">
+    <h2 class="text-5xl font-semibold mb-2">Frequently Asked Questions</h2>
+  </div>
+
+  <div class="space-y-6">
+    {
+      faq.map((item, index) => (
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          {item.href ? (
+            <a href={item.href} class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none">
+              <span class="text-lg font-medium">{item.question}</span>
+            </a>
+          ) : (
+            <button
+              class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none hover:cursor-pointer hover:bg-blue-50"
+              id={`faq-button-${index + 1}`}
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index + 1}`}
+            >
+              <span class="text-lg font-medium">{item.question}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-blue-500 transform transition-transform duration-200"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                id={`faq-icon-${index + 1}`}
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
+          {item.answer && (
+            <div class="px-6 py-4 bg-gray-50 hidden" id={`faq-answer-${index + 1}`}>
+              <p>{item.answer}</p>
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const faqButtons = document.querySelectorAll('[id^="faq-button-"]');
+
+  faqButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const controlId = button.getAttribute('aria-controls');
+
+      if (!controlId) return;
+
+      const content = document.getElementById(controlId);
+      const iconId = button.querySelector('svg')?.id;
+
+      if (!content || !iconId) return;
+
+      const icon = document.getElementById(iconId);
+      if (!icon) return;
+
+      // Toggle expanded state
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+
+      // Toggle content visibility
+      if (isExpanded) {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      } else {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

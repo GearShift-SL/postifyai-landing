@@ -1,518 +1,101 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import Content from '~/components/widgets/Content.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-// import Testimonials from '~/components/widgets/Testimonials.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-
-// Import getpermalink
-// import { getPermalink } from '~/utils/permalinks'
-// import { Icon } from 'astro-icon/components'
-import FeaturesContent from '~/components/widgets/FeaturesContent.astro';
-
-import 'aos/dist/aos.css'; // AOS styles
-import SocialProofPeople from '~/components/widgets/SocialProofPeople.astro';
-// import PricingInteractive from '~/components/widgets/PricingInteractive.astro';
-import Image from '~/components/common/Image.astro';
-
-const metadata = {
-  title: 'Home',
-};
+import FAQ from '~/components/landing/FAQ.astro';
+import Features from '~/components/landing/Features.astro';
+import FooterHero from '~/components/landing/FooterHero.astro';
+import Hero from '~/components/landing/Hero.astro';
+import Testimonials from '~/components/landing/Testimonials.astro';
+import Transformation from '~/components/landing/Transformation.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import AsSeenOn from '~/components/landing/AsSeenOn.astro';
+import Pricing from '~/components/landing/Pricing.tsx';
+import DemoImage from '../assets/images/demo-image.webp';
 ---
 
-<Layout metadata={metadata} hasInitialBg>
-  <div class="">
-    <!-- 1. Hero block -->
-    <Hero
-      actions={[
+<PageLayout>
+  <section id="hero" class="scroll-mt-24">
+    <Hero />
+  </section>
+
+  <!-- <section id="demovideo">
+    <DemoVideo />
+  </section> -->
+
+  <section id="social-proof">
+    <AsSeenOn
+      logoLists={[
         {
-          variant: 'primary',
-          text: 'Start writing',
-          href: '/pricing/',
-          icon: 'tabler:rocket',
-        },
-        { text: 'How does it work', href: '#transformation' },
-      ]}
-    >
-      <!-- Title and Subtitle -->
-      <Fragment slot="title">
-        Blog articles <span class="text-accent dark:text-white highlight">done for you</span>
-      </Fragment>
-      <Fragment slot="subtitle">
-        Create well-written, <span class="font-bold">SEO oriented</span>, blog articles<span class="font-bold">
-          with just one click.</span
-        >.
-      </Fragment>
-
-      <!-- Social proof people -->
-      <Fragment slot="content">
-        <SocialProofPeople
-          images={[
-            {
-              src: '~/assets/images/social-proof-people/1.jpg',
-              alt: 'Ana',
-            },
-            {
-              src: '~/assets/images/social-proof-people/2.jpg',
-              alt: 'Carlos',
-            },
-            {
-              src: '~/assets/images/social-proof-people/3.jpg',
-              alt: 'Zayra',
-            },
-            {
-              src: '~/assets/images/social-proof-people/4.jpg',
-              alt: 'Julia',
-            },
-            {
-              src: '~/assets/images/social-proof-people/5.jpg',
-              alt: 'Roberto',
-            },
-            {
-              src: '~/assets/images/social-proof-people/6.jpg',
-              alt: 'Alex',
-            },
-            {
-              src: '~/assets/images/social-proof-people/7.jpg',
-              alt: 'Maria',
-            },
-            {
-              src: '~/assets/images/social-proof-people/8.jpg',
-              alt: 'Carlota',
-            },
-            {
-              src: '~/assets/images/social-proof-people/9.jpg',
-              alt: 'Juan',
-            },
-            {
-              src: '~/assets/images/social-proof-people/10.jpg',
-              alt: 'Antonio',
-            },
-          ]}
-        >
-          <Fragment slot="content">
-            <p class="mt-4 text-center text-base text-gray-900 dark:text-gray-200 md:mt-0 md:ml-4">
-              <span class="block"
-                >Join the<!-- -->
-                <span class="font-semibold">12 marketers and founders</span>
-              </span><span class="block">already boosting SEO.</span>
-            </p>
-          </Fragment>
-        </SocialProofPeople>
-      </Fragment>
-
-      <!-- Image -->
-      <Fragment slot="image">
-        <div class="w-full flex justify-center">
-          <Image
-            src="~/assets/images/hero-image.webp"
-            alt="Hero image"
-            class="object-cover bg-white dark:p-10 rounded-lg"
-          />
-        </div>
-      </Fragment>
-
-      <!-- Social proof companies -->
-      <!-- <Fragment slot='footer'>
-        <div class='text-center mt-10' data-aos='fade-up'>
-          <p class='text-lg font-semibold text-gray-700 dark:text-gray-300'>
-            Estas inmobiliarias confían en nosotros
-          </p>
-        </div>
-
-      <div
-        class='mt-5 w-full flex flex-wrap items-center justify-center gap-x-12 gap-y-6 lg:mt-10 lg:gap-x-16 lg:gap-y-8'
-        data-aos='fade-up'
-      >
-        <Icon
-          name='logos/logo'
-          class='text-3xl text-[#272727] dark:text-gray-300'
-        />
-      </div>
-    </Hero> -->
-    </Hero>
-
-    <!-- Separator -->
-    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-    <!-- 2. Problem Agitation -->
-    <Content
-      dataAos="fade-up"
-      items={[
-        {
-          title: 'Time Wasted on Research',
-          description:
-            'You spend hours researching topics, keywords, and competitors, often getting lost in a sea of information without clear direction.',
-          icon: 'tabler:clock',
-        },
-        {
-          title: 'Inconsistent Quality',
-          description:
-            'Producing high-quality, SEO-optimized content consistently is challenging, leading to fluctuating rankings and unreliable traffic.',
-          icon: 'tabler:chart-bar-off',
-        },
-        {
-          title: 'Slow Content Production',
-          description:
-            'Creating SEO-friendly articles takes days or weeks, causing you to miss timely opportunities and fall behind competitors.',
-          icon: 'tabler:writing',
-        },
-        {
-          title: 'Cannot focus on building',
-          description: 'SEO takes A LOT of time, time that is taken away from building your business.',
-          icon: 'tabler:building-skyscraper',
-        },
-      ]}
-      iconClass="w-10 h-10 p-2 rounded-full border-2 text-gray-500 dark:text-red-200 border-gray-500 dark:border-red-700"
-    >
-      <Fragment slot="title">Sound familiar?</Fragment>
-
-      <Fragment slot="image">
-        <Image
-          src="~/assets/images/problem-agitation.webp"
-          alt="SEO content creation struggles"
-          class="rounded-lg h-full w-full object-cover"
-        />
-      </Fragment>
-    </Content>
-
-    <!-- Separator -->
-    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-    <!-- 3. Transformation -->
-    <Content
-      id="transformation"
-      dataAos="fade-up"
-      actions={[
-        {
-          variant: 'primary',
-          text: 'Start writing',
-          href: '/pricing/',
-          icon: 'tabler:rocket',
-        },
-        { text: 'Features', href: '#features' },
-      ]}
-      items={[
-        {
-          title: 'Instant Article Generation',
-          description:
-            'Generate SEO-optimized articles in seconds by simply inputting your target keyphrase and brand information, saving hours of research and writing time.',
-          icon: 'tabler:bolt',
-        },
-        {
-          title: 'Brand-Aligned Content',
-          description:
-            'Create content that seamlessly integrates your brand messaging with SEO best practices, ensuring your articles drive traffic while reinforcing your brand identity.',
-          icon: 'tabler:building',
-        },
-        {
-          title: 'SEO Optimization',
-          description:
-            'Automatically optimize your content for search engines, including keyword placement, meta descriptions, and headings, to improve your search rankings.',
-          icon: 'tabler:search',
-        },
-        {
-          title: 'Scalable Content Production',
-          description:
-            'Rapidly produce multiple high-quality articles on various topics, allowing you to expand your content strategy and cover more keywords efficiently.',
-          icon: 'tabler:stack',
-        },
-      ]}
-      isReversed
-      iconClass="w-10 h-10 p-2 rounded-full border-2 text-primary dark:text-slate-200 border-primary dark:border-blue-700"
-    >
-      <Fragment slot="title"
-        >Enter <span class="text-primary">postifyAI</span><br /><br /> Your Virtual SEO Content Assistant</Fragment
-      >
-
-      <Fragment slot="subtitle">Automate, optimize, and supercharge your SEO content creation</Fragment>
-
-      <Fragment slot="image">
-        <div class="w-full flex justify-center">
-          <Image
-            src="~/assets/images/transformation.webp"
-            alt="AI-powered SEO content creation"
-            class="rounded-md h-full object-contain"
-          />
-        </div>
-      </Fragment>
-    </Content>
-
-    <!-- Separator -->
-    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-    <!-- 4. Social Proof -->
-    <!-- <Testimonials
-      dataAos="fade-up"
-      title="What our customers say"
-      lgCols={2}
-      testimonials={[
-        {
-          title: 'Revolucionario',
-          testimonial:
-            'AutoVisita nos está encantando. Hemos reducido el tiempo de gestión en un 60% y aumentado las visitas en un 30%. Una herramienta imprescindible.',
-          name: 'Jose García',
-          job: 'CEO of Emissary',
-          brandLink: 'https://www.emissary.es/',
-          image: {
-            src: '~/assets/images/jose-garcia-emissary.jpg',
-            alt: 'Jose Garcia',
-          },
-        },
-        {
-          title: 'Muy contenta',
-          testimonial:
-            'Estamos atendiendo todas las solicitudes sin esfuerzo. Nuestros clientes están encantados de poder reservar cuando quieran y nosotros de no perder oportunidades. Ahora alquilamos un piso en la mitad de tiempo.',
-          name: 'Ana',
-          job: 'Directora de Operaciones en RENTAKE',
-        },
-      ]}
-    /> -->
-
-    <!-- Separator -->
-    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-    <!-- 5. Features -->
-    <FeaturesContent
-      dataAos="fade-up"
-      id="features"
-      sections={[
-        {
-          icon: 'tabler:circle-1-filled',
-          title: 'Easy Setup',
-          subtitle: 'Start generating SEO-optimized content in minutes',
-          points: [
-            'Choose between open-source (self-hosted) or cloud version',
-            'Set up your brand profile with key information',
-            'Input your target keywords and phrases',
-            'Select from various article types (guides, listicles, comparisons)',
-            'Start writing with just a few clicks',
+          title: 'as seen on',
+          logos: [
+            { name: 'El Referente', icon: 'elreferente-logo', height: 8 },
+            { name: 'Gearshift', icon: 'gearshift-logo', height: 8 },
+            { name: 'SaaSHub', icon: 'saashub-logo', height: 10 },
           ],
-          image: {
-            src: '~/assets/images/features-1.webp',
-            alt: 'PostifyAI easy setup process',
-          },
-          isReversed: true,
         },
         {
-          icon: 'tabler:circle-2-filled',
-          title: 'Intelligent Content Research',
-          subtitle: 'Leverage AI-powered competitor and keyword analysis',
-          points: [
-            'Automatic search engine scraping for relevant content',
-            'Competitor analysis to identify top-performing articles',
-            'Keyword density and placement optimization',
-            'Identification of trending topics in your niche',
-            'Generation of content outlines based on top-ranking articles',
+          title: 'and used by',
+          logos: [
+            { name: 'AutoIPC', icon: 'autoipc-logo', height: 8 },
+            { name: 'SynCal', icon: 'syncal-logo', height: 8 },
           ],
-          image: {
-            src: '~/assets/images/features-2.webp',
-            alt: 'PostifyAI content research and analysis',
-          },
-        },
-        {
-          icon: 'tabler:circle-3-filled',
-          title: 'Multi-step Article Generation',
-          subtitle: 'Create high-quality, SEO-optimized content effortlessly',
-          points: [
-            'AI-powered content writing in multiple stages',
-            'Automatic integration of researched information',
-            'SEO optimization throughout the writing process',
-            'Generation of engaging titles and meta descriptions',
-            'Creation of structured content with headings and subheadings',
-          ],
-          image: {
-            src: '~/assets/images/features-3.webp',
-            alt: 'PostifyAI article generation process',
-          },
-          isReversed: true,
-        },
-        {
-          icon: 'tabler:circle-4-filled',
-          title: 'Versatile Article Types',
-          subtitle: 'Cater to various content needs with multiple formats',
-          points: [
-            'In-depth guides for comprehensive topic coverage',
-            'Engaging listicles for easy consumption',
-            'Comparative articles for product or service analysis',
-            'How-to tutorials for step-by-step instructions',
-            'Customizable templates for consistent brand voice',
-          ],
-          image: {
-            src: '~/assets/images/features-4.webp',
-            alt: 'PostifyAI versatile article types',
-          },
-        },
-        {
-          icon: 'tabler:circle-5-filled',
-          title: 'Brand Integration',
-          subtitle: 'Seamlessly incorporate your brand identity into every article',
-          points: [
-            'Automatic inclusion of brand-specific keywords and phrases',
-            'Consistent tone and style matching your brand guidelines',
-            'Integration of brand messaging and unique selling points',
-            'Customizable content templates aligned with your brand',
-            'Option to include brand-specific calls-to-action',
-          ],
-          image: {
-            src: '~/assets/images/features-5.webp',
-            alt: 'PostifyAI brand integration features',
-          },
-          isReversed: true,
-        },
-        {
-          icon: 'tabler:circle-6-filled',
-          title: 'Flexible Deployment Options',
-          subtitle: 'Choose the setup that best fits your needs and resources',
-          points: [
-            'Open-source version for complete control and customization',
-            'Docker support for easy self-hosting and deployment',
-            'Cloud version for instant access without setup hassles',
-            'API integration for seamless incorporation into existing workflows',
-            'Regular updates and improvements in both versions',
-          ],
-          image: {
-            src: '~/assets/images/features-6.webp',
-            alt: 'PostifyAI deployment options',
-          },
-        },
-      ]}
-    >
-      <Fragment slot="title">How does it work?</Fragment>
-      <Fragment slot="subtitle"> Find out the features that make postifyAI unique </Fragment>
-    </FeaturesContent>
-
-    <CallToAction
-      dataAos="fade-up"
-      actions={[
-        {
-          variant: 'primary',
-          text: 'Start writing',
-          href: '/pricing/',
-          icon: 'tabler:rocket',
-        },
-      ]}
-    >
-      <Fragment slot="title">Ready to start saving time and boosting your SEO?</Fragment>
-
-      <Fragment slot="subtitle">
-        Use postifyAI for free, it's open sourced! <br />
-        Or try our cloud version for a hassle-free experience.
-      </Fragment>
-    </CallToAction>
-
-    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-    <!-- 6. About Us -->
-    <HeroText id="about" dataAos="fade-up">
-      <Fragment slot="title">About Us</Fragment>
-      <Fragment slot="subtitle">
-        Our mission is to save time in content creation and help businesses and marketers by offering the best
-        AI-powered SEO content generation tools and customized solutions.
-      </Fragment>
-      <Fragment slot="content">
-        <div class="flex items-center justify-center mb-8" data-aos="fade-up">
-          <Image
-            src="~/assets/images/daniel-garcia.jpeg"
-            alt="PostifyAI Founder"
-            width={128}
-            height={128}
-            class="shadow-lg object-cover rounded-full h-32 w-32 border border-gray-300 dark:border-gray-700"
-          />
-        </div>
-        <p data-aos="fade-up">
-          PostifyAI was founded by Daniel, an entrepreneur who, while building his products, identified the need for
-          businesses to streamline their content creation processes and make better decisions through automation and
-          data-driven insights. <span class="font-bold"
-            ><br /><br />
-            We believe that technology should be an empowering tool, not a source of frustration.
-          </span>
-        </p>
-      </Fragment>
-    </HeroText>
-
-    <!-- Pricing -->
-
-    <!-- <PricingInteractive
-      dataAos="fade-up"
-      id="pricing"
-      title="Empieza a ahorrar tiempo hoy"
-      subtitle="Pruébalo gratis durante 7 días"
-    /> -->
-
-    <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-    <FAQs
-      dataAos="fade-up"
-      title="Frequently Asked Questions"
-      id="faq"
-      items={[
-        {
-          title: 'Is postifyAI really free to use?',
-          description:
-            'Yes, postifyAI is an open-source project, and you can use it for free. You can also opt for our cloud-based subscription service, which offers additional features and support.',
-        },
-        {
-          title: 'How does postifyAI integrate with my existing content management system?',
-          description:
-            'Integration is straightforward. postifyAI can export content in markdown, which is compatible with most popular CMS platforms. Otherwise you can just copy and paste the content.',
-        },
-        {
-          title: 'Can I customize the tone and style of the generated content?',
-          description:
-            'This feature is coming soon! postifyAI allows you to define your brand voice and style preferences. You can set parameters for tone (formal, casual, humorous, etc.), writing style, and even specify certain phrases or terminologies to include or avoid. The AI will then generate content that aligns with your brand guidelines.',
-        },
-        {
-          title: 'What types of content can postifyAI generate?',
-          description:
-            'postifyAI is versatile and can generate various types of content, including blog guides, listicles, comparisons, etc. We offer different templates and structures for each content type, ensuring that the output is not only SEO-optimized but also formatted appropriately for its intended use.',
-        },
-        {
-          title: 'Can I try postifyAI before committing to a subscription?',
-          description:
-            "postifyAI is totally free! Since it's an open-source project, you can try it out without any commitment. If you prefer a cloud-based solution, we do offer a hassle-free subscription service with additional features and support.",
-        },
-        {
-          title: 'How does postifyAI ensure the generated content is original and plagiarism-free?',
-          description:
-            'postifyAI uses advanced natural language processing techniques to generate original content. Each piece is created from scratch based on the provided keywords and parameters. We also integrate with leading plagiarism checking tools, allowing you to verify the originality of the content before publication. If any potential issues are detected, the AI can regenerate the content to ensure uniqueness.',
-        },
-        {
-          title: 'Can postifyAI optimize content for specific search engines or locales?',
-          description:
-            'Yes, postifyAI can optimize content for different search engines and various locales. You can specify your target geographic location, and the AI will adjust its optimization strategies accordingly, including keyword usage, content structure, and even cultural nuances when relevant.',
         },
       ]}
     />
+  </section>
 
-    <CallToAction
-      dataAos="fade-up"
-      actions={[
-        {
-          variant: 'primary',
-          text: 'Start writing',
-          href: '/pricing/',
-          icon: 'tabler:rocket',
-        },
-      ]}
-    >
-      <Fragment slot="title">Ready to start saving time and boosting your SEO?</Fragment>
-
-      <Fragment slot="subtitle">
-        Use postifyAI for free, it's open sourced! <br />
-        Or try our cloud version for a hassle-free experience.
-      </Fragment>
-    </CallToAction>
-
-    <script>
-      // Put this script in the pages that use AOS
-      import { aosInit } from '~/scripts/aos';
-      // runs on initial page load
-      aosInit();
-      // runs on view transitions navigation
-      document.addEventListener('astro:after-swap', aosInit);
-    </script>
+  <!-- Separator -->
+  <div class="w-full max-w-5xl mx-auto px-4 my-5">
+    <hr class="border-gray-200" />
   </div>
-</Layout>
+
+  <section id="transformation">
+    <Transformation />
+  </section>
+
+  <section id="how-to-use" class="scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <div class="text-center mb-16">
+        <h2 class="text-5xl font-bold mb-4">How does it work</h2>
+      </div>
+
+      <!-- Numbered list of steps -->
+      <div class="flex flex-col gap-4 text-2xl">
+        <div>1. 💻 Fill in your brand's website</div>
+        <div>2. 🤖 Postify AI will analyze your brand's information</div>
+        <div>3. 🧮 Select the type of article you want to create</div>
+        <div>4. 🔍 Postify AI will analyze your competitors and find the best keywords</div>
+        <div>5. 📝 Postify AI will create the SEO blog post for you</div>
+      </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4">
+      <!-- <Image src={demoAnimation} alt="Demo preview" class="mx-auto rounded-4xl shadow-lg" loading="lazy" /> -->
+      <Image src={DemoImage} alt="Demo preview" class="mx-auto" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <div class="w-full max-w-5xl mx-auto px-4 my-5">
+    <hr class="border-gray-200" />
+  </div>
+
+  <section id="social-proof">
+    <Testimonials />
+  </section>
+
+  <section id="features" class="scroll-mt-24">
+    <Features />
+  </section>
+
+  <section id="faq" class="scroll-mt-24">
+    <FAQ />
+  </section>
+
+  <section id="pricing" class="scroll-mt-24">
+    <Pricing client:only="react" />
+  </section>
+
+  <section id="footer-hero">
+    <FooterHero />
+  </section>
+</PageLayout>

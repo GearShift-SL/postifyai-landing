@@ -1,0 +1,115 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { CollectionEntry } from 'astro:content';
+import importImage from '~/utils/importImage';
+import { Image } from 'astro:assets';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  category?: string;
+  tag?: string;
+}
+
+const { posts, category, tag } = Astro.props;
+
+let filteredPosts = posts;
+
+// If category is provided, filter posts by category
+if (category) {
+  filteredPosts = posts.filter((post) => post.data.category.toLowerCase() === category.toLowerCase());
+}
+
+// If tags are provided, filter posts by tags
+if (tag) {
+  filteredPosts = filteredPosts.filter((post) => post.data.tags.some((t) => t.toLowerCase() === tag.toLowerCase()));
+}
+
+// Sort posts by date
+const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf());
+
+// Format date function
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+
+// Function to get the HTML for the h1 title
+const getH1Title = () => {
+  if (category) {
+    return `<span class="font-bold">Artículos en la categoría: <span class="bg-gray-100 rounded-md px-2 py-1 hover:bg-gray-200 transition-colors">${category}</span></span>`;
+  }
+  if (tag) {
+    return `<span class="font-bold">Artículos con la etiqueta: <span class="bg-gray-100 rounded-md px-2 py-1 hover:bg-gray-200 transition-colors">${tag}</span></span>`;
+  } else {
+    return `<span class="font-bold">Artículos</span>`;
+  }
+};
+
+const h1Title = getH1Title();
+
+// Get the images for the post in order and add them to a list so we can use them in the component
+const images = await Promise.all(sortedPosts.map(async (post) => {
+  if (post.data.ogImage) {
+    return await importImage(post.data.ogImage);
+  }
+  return null;
+}));
+---
+
+<div class="space-y-8">
+  <h1 class="text-3xl font-bold mb-8" set:html={h1Title}>
+  </h1>
+
+  {posts.length === 0 && <p class="text-gray-600">No posts found.</p>}
+
+  <ul class="space-y-4">
+    {
+      sortedPosts.map((post, index) => (
+        <li class="group hover:bg-gray-50 rounded-lg transition-colors">
+          <article class="p-4">
+            <a href={`/blog/${post.id.split('/').pop()}/`} class="block">
+              <div class="flex gap-4 items-start">
+                {images[index] && (
+                  <div class="flex-shrink-0">
+                    <Image
+                      src={images[index]}
+                      alt={`Cover image for ${post.data.title}`}
+                      class="w-24 h-24 object-cover rounded-lg"
+                    />
+
+                  </div>
+                )}
+                <div class="flex-1 min-w-0">
+                  <h2 class="text-xl font-semibold group-hover:text-blue-600 transition-colors">{post.data.title}</h2>
+                  {post.data.description && <p class="mt-2 text-gray-700 line-clamp-2">{post.data.description}</p>}
+                </div>
+              </div>
+            </a>
+            <div class="flex flex-wrap gap-4 mt-3 text-sm text-gray-600">
+              <div class="flex items-center">
+                <Icon name="tabler:user" class="w-5 h-5 mr-1" />
+                <span>{post.data.author}</span>
+              </div>
+              <div class="flex items-center">
+                <Icon name="tabler:folder" class="w-5 h-5 mr-1" />
+                <a
+                  href={`/${post.data.category.toLowerCase()}/`}
+                  class="hover:text-blue-600 transition-colors"
+                >
+                  {post.data.category}
+                </a>
+              </div>
+              <div class="flex items-center">
+                <Icon name="tabler:calendar" class="w-5 h-5 mr-1" />
+                <span>{formatDate(post.data.pubDatetime)}</span>
+              </div>
+            </div>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</div>

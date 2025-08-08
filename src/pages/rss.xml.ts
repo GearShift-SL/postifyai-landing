@@ -1,37 +1,35 @@
-import { getRssString } from '@astrojs/rss';
+// RSS feed for es blog posts
 
-import { SITE, METADATA, APP_BLOG } from 'astrowind:config';
-import { fetchPosts } from '~/utils/blog';
-import { getPermalink } from '~/utils/permalinks';
+import rss from '@astrojs/rss';
+import { SITE } from '~/config';
+import { getCollection } from 'astro:content';
+import getSortedPosts from '~/utils/getSortedPosts';
 
-export const GET = async () => {
-  if (!APP_BLOG.isEnabled) {
-    return new Response(null, {
-      status: 404,
-      statusText: 'Not found',
-    });
-  }
+export async function GET(context: any) {
+  const unsortedPosts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
 
-  const posts = await fetchPosts();
+  const postsByLang = unsortedPosts.filter((post) => post.id.split('/')[0] === 'es');
 
-  const rss = await getRssString({
-    title: `${SITE.name}’s Blog`,
-    description: METADATA?.description || '',
-    site: import.meta.env.SITE,
-
-    items: posts.map((post) => ({
-      link: getPermalink(post.permalink, 'post'),
-      title: post.title,
-      description: post.excerpt,
-      pubDate: post.publishDate,
+  const posts = getSortedPosts(postsByLang);
+  return rss({
+    // `<title>` field in output xml
+    title: SITE().title,
+    // `<description>` field in output xml
+    description: SITE().description,
+    // Pull in your project "site" from the endpoint context
+    // https://docs.astro.build/en/reference/api-reference/#site
+    site: SITE().siteUrl,
+    // Array of `<item>`s in output xml
+    // See "Generating items" section for examples using content collections and glob imports
+    items: posts.map(({ data, id }) => ({
+      title: data.title,
+      description: data.description,
+      pubDate: new Date(data.modDatetime ?? data.pubDatetime),
+      link: `/es/blog/${id.split('/')[1]}/`,
     })),
-
-    trailingSlash: SITE.trailingSlash,
+    // (optional) inject custom xml
+    customData: `<language>es</language>`,
   });
-
-  return new Response(rss, {
-    headers: {
-      'Content-Type': 'application/xml',
-    },
-  });
-};
+}

@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '~/layouts/PostLayout.astro';
+
+// Generate a new path for every published blog post
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  // For every published post, extract the language and slug
+  const paths = posts.map((post) => {
+    const [slug] = post.id.split('/');
+    return { params: { slug }, props: { post } };
+  });
+
+  return paths;
+}
+
+const { post } = Astro.props;
+
+const { Content } = await render(post);
+---
+
+<PostLayout post={post}>
+  <Fragment slot="title">{post.data.title}</Fragment>
+  <Content />
+</PostLayout>

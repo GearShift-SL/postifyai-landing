@@ -1,0 +1,138 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Logo {
+  name: string;
+  icon: string;
+  height?: number;
+}
+
+interface LogoList {
+  title: string;
+  logos: Logo[];
+}
+
+interface Props {
+  logoLists?: LogoList[];
+  className?: string;
+}
+
+const { logoLists, className = '' } = Astro.props;
+---
+
+<div class={`flex justify-center items-center w-full py-8 px-4 ${className}`}>
+  <div class="carousel-container relative overflow-hidden max-w-full">
+    <div id="carousel-track" class="flex items-center h-full">
+      <!-- First set of content -->
+      {
+        logoLists && (
+          <>
+            {logoLists.map((logoList) => (
+              <>
+                <p class="text-gray-500 text-sm font-normal whitespace-nowrap flex-shrink-0 mr-6 sm:mr-8 md:mr-12">
+                  {logoList.title}
+                </p>
+                {logoList.logos.map((logo) => (
+                  <div class="flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 flex-shrink-0 h-full mr-6 sm:mr-8 md:mr-12">
+                    <Icon
+                      name={logo.icon}
+                      class={`w-auto max-w-full grayscale ${logo.height ? `h-${logo.height}` : 'h-8'}`}
+                    />
+                  </div>
+                ))}
+              </>
+            ))}
+          </>
+        )
+      }
+
+      <!-- Duplicated content for seamless loop -->
+      {
+        logoLists && (
+          <>
+            {logoLists.map((logoList) => (
+              <>
+                <p class="text-gray-500 text-sm font-normal whitespace-nowrap flex-shrink-0 mr-6 sm:mr-8 md:mr-12">
+                  {logoList.title}
+                </p>
+                {logoList.logos.map((logo) => (
+                  <div class="flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 flex-shrink-0 h-full mr-6 sm:mr-8 md:mr-12">
+                    <Icon
+                      name={logo.icon}
+                      class={`w-auto max-w-full grayscale ${logo.height ? `h-${logo.height}` : 'h-8'}`}
+                    />
+                  </div>
+                ))}
+              </>
+            ))}
+          </>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .carousel-container {
+    width: 100%;
+  }
+
+  #carousel-track {
+    will-change: transform;
+    transition: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    let position = 0;
+    let animationId: number | undefined;
+    let isPaused = false;
+    const speed = 0.5; // pixels per frame
+
+    function getContentWidth(): number {
+      // Calculate width by getting half the total track width since we have duplicated content
+      const trackWidth = track!.scrollWidth;
+      return trackWidth / 2;
+    }
+
+    function animate(): void {
+      if (!isPaused) {
+        position -= speed;
+        const contentWidth = getContentWidth();
+
+        // Reset position when we've scrolled one full content width
+        if (Math.abs(position) >= contentWidth) {
+          position = 0;
+        }
+
+        track!.style.transform = `translateX(${position}px)`;
+      }
+
+      animationId = requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+
+    // Pause on hover
+    track.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+
+    // Resume when not hovering
+    track.addEventListener('mouseleave', () => {
+      isPaused = false;
+    });
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (animationId !== undefined) {
+        cancelAnimationFrame(animationId);
+      }
+    });
+  });
+</script>

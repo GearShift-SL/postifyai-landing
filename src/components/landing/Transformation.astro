@@ -1,0 +1,141 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface ProblemMix {
+  type: 'problem' | 'logo';
+  name: string;
+  h?: number;
+}
+
+// Create a problem mix dictionary by mixing problems and logos randomly with this structure:
+const problemMix: ProblemMix[] = [
+  {
+    type: 'problem',
+    name: 'time consuming',
+  },
+  {
+    type: 'problem',
+    name: 'low quality',
+  },
+  {
+    type: 'problem',
+    name: 'no traffic',
+  },
+  {
+    type: 'problem',
+    name: 'low engagement',
+  },
+  {
+    type: 'problem',
+    name: 'ranking low',
+  },
+];
+
+const solutions = ['Create SEO blog posts in seconds', 'Analyze your competitors', 'Find the best keywords'];
+---
+
+<div class="max-w-6xl mx-auto px-4 py-12">
+  <div class="text-center mb-16">
+    <h2 class="text-5xl font-bold mb-4">Save 4 hours a day writing <span class="text-primary">SEO blog posts</span></h2>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-4 items-center">
+    <!-- Problem mix -->
+    <div class="flex flex-col items-center justify-center w-full md:w-90 lg:w-90 lg:min-w-90">
+      <h3 class="text-2xl font-semibold mb-6">Problems</h3>
+      <!-- Box -->
+      <div class="bg-white rounded-xl p-8 shadow-lg w-full">
+        <div class="flex flex-wrap gap-2 items-center justify-center">
+          {
+            problemMix.map((item) =>
+              item.type === 'problem' ? (
+                <div class="rounded-full px-4 py-2 text-xs font-medium bg-gray-500 text-white ">{item.name}</div>
+              ) : (
+                <div class="px-4 py-2  text-gray-600 ">
+                  <Icon name={item.name} class={`w-auto h-${item.h}`} />
+                </div>
+              )
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Estavia logo with arrow icons -->
+    <div class="flex flex-col lg:flex-row items-center justify-center relative flex-1">
+      <!-- Arrows container for mobile (down arrows) -->
+      <div class="block lg:hidden w-full">
+        <!-- First down arrow -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" class="w-full opacity-20">
+          <defs>
+            <linearGradient id="blueGradientDown" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#FFFFFF"></stop>
+              <stop offset="100%" style="stop-color:#2B7BFF"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M 0,0 L 100,0 L 50,60 Z" fill="url(#blueGradientDown)"></path>
+        </svg>
+
+        <!-- Second down arrow -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" class="w-full opacity-20">
+          <defs>
+            <linearGradient id="blueGradientDown" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#FFFFFF"></stop>
+              <stop offset="100%" style="stop-color:#2B7BFF"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M 0,0 L 100,0 L 50,60 Z" fill="url(#blueGradientDown)"></path>
+        </svg>
+      </div>
+
+      <!-- Arrows container for desktop (left to right arrows) -->
+      <div class="hidden lg:flex w-full h-10 lg:h-80 justify-center opacity-20">
+        <!-- First Right arrow -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 100" class="h-full">
+          <defs>
+            <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#FFFFFF"></stop>
+              <stop offset="100%" style="stop-color:#2B7BFF"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M 0,0 L 60,50 L 0,100 Z" fill="url(#blueGradient)"></path>
+        </svg>
+
+        <!-- Second Right arrow -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 100" class="h-full">
+          <defs>
+            <linearGradient id="blueGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#FFFFFF"></stop>
+              <stop offset="100%" style="stop-color:#2B7BFF"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M 0,0 L 60,50 L 0,100 Z" fill="url(#blueGradient2)"></path>
+        </svg>
+      </div>
+
+      <!-- Estavia logo - positioned absolutely in the center -->
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+        <div class="bg-white rounded-3xl p-8 shadow-lg">
+          <Icon name="main-logo" class="text-3xl lg:text-5xl" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Solutions -->
+    <div class="flex justify-center flex-col items-center w-full lg:w-80">
+      <h3 class="text-2xl font-semibold mb-6">Solutions</h3>
+      <div class="space-y-4 w-full">
+        {
+          solutions.map((solution) => (
+            <div class="bg-white rounded-lg p-4 shadow flex items-center gap-3">
+              <div class="bg-primary rounded-full p-1 flex-shrink-0">
+                <Icon name="tabler:check" class="w-5 h-5 text-white" />
+              </div>
+              <span class="text-lg">{solution}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>

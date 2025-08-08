@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+import PostsByYear from '~/components/blog/PostsByYear.astro';
+
+const posts = await getCollection('blog');
+const publishedPosts = posts.filter((post) => post.data.draft !== true);
+---
+
+<PageLayout>
+  <div class="max-w-3xl mx-auto px-4 py-16">
+    <PostsByYear posts={publishedPosts} />
+  </div>
+</PageLayout>

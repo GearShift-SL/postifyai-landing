@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import feature1 from '../../assets/images/feature-1.png';
+import feature2 from '../../assets/images/feature-2.png';
+import feature3 from '../../assets/images/feature-3.png';
+import feature4 from '../../assets/images/feature-4.png';
+
+// Features.astro
+
+type Feature = {
+  tag: string;
+  title: string;
+  description: string;
+  video?: string;
+  image?: ImageMetadata;
+  ctaText: string;
+  ctaTextMobile?: string;
+  ctaLink: string;
+  ctaNote?: string;
+};
+
+const features: Feature[] = [
+  {
+    tag: 'EASY SETUP',
+    title: 'Postify AI analyzes your brand automatically',
+    description: `
+      By entering your website, Postify AI analyzes the landing page of your product or service.
+      <br/><br/>
+      This allows Postify AI to cater the generated blog posts towards your brand, optimizing them for SEO.
+      <br/><br/>
+      You can always fill in further details manually.
+    `,
+    ctaText: 'Create your first blog post now',
+    ctaTextMobile: 'Create your first blog post',
+    ctaLink: '#hero',
+    image: feature1,
+  },
+  {
+    tag: 'COMPETITOR OPTIMIZATION',
+    title: 'Postify AI automatically analyzes your competitors',
+    description: `
+      Before each article is generated, Postify AI will analyze the top ranking websites for the chosen keywords.
+      <br/><br/>
+      This allows Postify AI to optimize the content of the blog posts so they rank higher on Google and other search engines.
+    `,
+    ctaText: 'Create your first blog post now',
+    ctaTextMobile: 'Create your first blog post',
+    ctaLink: '#hero',
+    image: feature2,
+  },
+  {
+    tag: 'KEYWORDS DONE FOR YOU',
+    title: 'Postify AI comes up with fresh keyword ideas',
+    description: `
+      After Postify AI analyzes your brand, you can ask it to generate a list of keywords and blog post title ideas that cater to your product.
+      <br/><br/>
+      This feature saves you hours of work and research.
+      <br/><br/>
+      Save your keywords and blog post title ideas directly in Postify, so you can generate them later.
+    `,
+    ctaText: 'Start researching keywords today',
+    ctaTextMobile: 'Start researching keywords',
+    ctaLink: '#hero',
+    image: feature3,
+  }
+];
+---
+
+<section class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+  <!-- Main section title -->
+  <div class="text-center mb-16">
+    <h2 class="text-5xl font-semibold text-gray-900">
+      This is how we help you <br /><span class="text-primary font-medium">rank on Google</span>
+    </h2>
+  </div>
+
+  <!-- Features -->
+  <div class="space-y-24">
+    {
+      features.map((feature, index) => (
+        <div
+          id={`feature-${index}`}
+          class={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 items-center scroll-mt-24`}
+        >
+          <div class="lg:w-1/2 space-y-4">
+            <p class="text-sm font-semibold text-gray-500 tracking-wider uppercase">{feature.tag}</p>
+            <h3 class="text-4xl text-gray-900">{feature.title}</h3>
+            <div class="text-lg text-gray-600" set:html={feature.description} />
+
+            <div class="pt-4">
+              <a href={feature.ctaLink} class="cta-secondary font-semibold">
+                <span class="hidden sm:inline">{feature.ctaText}</span>
+                <span class="sm:hidden">{feature.ctaTextMobile || feature.ctaText}</span>
+              </a>
+              {feature.ctaNote && <p class="text-sm text-gray-500 mt-4 ml-4">{feature.ctaNote}</p>}
+            </div>
+          </div>
+
+          <div class="lg:w-1/2 rounded-lg overflow-hidden shadow-lg">
+            {feature.video && (
+              <video autoplay loop muted playsinline class="w-full">
+                <source src={feature.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+            {feature.image && <Image src={feature.image} alt={feature.title} class="w-full" width={800} height={600} />}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

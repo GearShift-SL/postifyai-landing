@@ -1,2 +1,8 @@
+# robots.txt for https://syncal.app
+
 User-agent: *
-Disallow:
+Disallow: /cdn-cgi/
+Allow: /
+
+# Sitemaps
+Sitemap: https://syncal.app/sitemap-index.xml 

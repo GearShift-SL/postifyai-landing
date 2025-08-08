@@ -1,14 +1,13 @@
 // devcontainer.json
 {
-  "name": "GearShift Landing",
+  "name": "PostifyAI Landing", // Name of the dev container
   "shutdownAction": "stopContainer", // Container behavior on VSCode close: none, stopContainer (default for image or Dockerfile), and stopCompose (default for Docker Compose)
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  // "dockerComposeFile": "docker-compose.yml",
-  // "service": "node",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  // Port forwarding
+  "appPort": ["4321:4321"],
   // Extensions and settings
   "customizations": {
     "vscode": {
@@ -25,19 +24,11 @@
         "jock.svg" // SVG
       ],
       "settings": {
-        "eslint.validate": [
-          "javascript",
-          "javascriptreact",
-          "astro",
-          "typescript",
-          "typescriptreact"
-        ],
+        "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
         // Prettier settings
         "prettier.enable": true,
         "editor.formatOnSave": true, // Format files on save
-        "prettier.documentSelectors": [
-          "**/*.astro"
-        ],
+        "prettier.documentSelectors": ["**/*.astro"],
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "[typescript]": {
           // TypeScript settings
@@ -58,10 +49,6 @@
         "[astro]": {
           "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
-        "prettier.semi": true,
-        "prettier.trailingComma": "none",
-        "prettier.singleQuote": false,
-        "prettier.printWidth": 80,
         // Window colors
         "workbench.colorCustomizations": {
           "activityBar.background": "#298dff",
@@ -71,9 +58,7 @@
         // Prevent json schema warnings
         "json.schemas": [
           {
-            "fileMatch": [
-              "/package.json"
-            ],
+            "fileMatch": ["/package.json"],
             "url": "https://json.schemastore.org/package",
             "schema": true
           }
@@ -81,7 +66,5 @@
       }
     }
   },
-  "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
-  ]
+  "mounts": ["source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"]
 }

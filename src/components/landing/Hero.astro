@@ -1,0 +1,94 @@
+---
+import { Icon } from 'astro-icon/components';
+import CTA from '~/components/landing/CTA';
+---
+
+<div class="max-w-7xl mx-auto px-4 mt-16 relative">
+  <div class="flex flex-col lg:flex-row items-center lg:gap-12 gap-2">
+    {/* Left Column - Main Content */}
+    <div class="flex-1 text-center lg:text-left">
+      {/* Badge */}
+      <div class="inline-flex items-center bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <Icon name="main-logo" class="text-sm mr-2" />
+        #1 SEO blog post generator
+        <span class="ml-2">⭐⭐⭐⭐⭐</span>
+      </div>
+
+      {/* Main Heading */}
+      <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+        Create SEO blog posts<br />
+        <span class="text-primary">with ease</span>
+      </h1>
+
+      {/* Features List */}
+      <div class="space-y-4 mb-8 text-left">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">🅱️</span>
+          <div>
+            <a
+              href="#feature-0"
+              class="font-semibold underline decoration-2 decoration-primary hover:decoration-primary/50"
+              >Fill in your brand's website</a
+            >
+            <span class="text-gray-600">
+              → Postify AI will <a href="#how-to-use" class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                >generate SEO blog posts for you in seconds</a
+              >  </span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">📄</span>
+          <div>
+            <span class="font-semibold"
+              >Postify AI  <a href="#feature-0" class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                >analyzes your brand </a
+              > to create the best SEO blog articles</span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">📊</span>
+          <div>
+            <span class="font-semibold"
+              > <a href="#feature-1" class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                >Analyzes your competitors to rank higher</a
+              > in search engines</span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">⚡</span>
+          <div>
+            <span class=" font-semibold"
+              > <a
+                href="#feature-2"
+                class="underline decoration-2 decoration-primary hover:decoration-primary/50">Keyword research</a
+              > for your brand</span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">🧑‍💻</span>
+          <div>
+            <span class=" font-semibold"
+              > <a
+                href="#pricing"
+                class="underline decoration-2 decoration-primary hover:decoration-primary/50">Open Source</a
+              > and free to use!</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Right Column - Signup Form */}
+    <div class="flex-1 max-w-md">
+      <CTA client:load />
+    </div>
+  </div>
+</div>

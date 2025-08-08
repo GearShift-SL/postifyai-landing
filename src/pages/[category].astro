@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+import PostsByYear from '~/components/blog/PostsByYear.astro';
+
+export async function getStaticPaths() {
+  // Create a flat array of paths for each language and category combination
+  const paths: Array<{
+    params: { category: string };
+    props: { posts: any[] };
+  }> = [];
+
+  // Get all the published posts
+  const posts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  // Get all the unique categories
+  const categories = [...new Set(posts.map((post) => post.data.category.toLowerCase()))];
+
+  // Add paths for each category in this language
+  categories.forEach((category) => {
+    const postsForCategory = posts.filter((post) => post.data.category.toLowerCase() === category);
+    paths.push({
+      params: { category: category.toLowerCase() },
+      props: { posts: postsForCategory },
+    });
+  });
+
+  // Return the paths for each category
+  return paths;
+}
+
+const { category } = Astro.params;
+const { posts } = Astro.props;
+
+// Create metadata for the page
+const metadata = {
+  title: `Posts in the category: ${category}`,
+  description: `Explore all the posts in the category: ${category}. Tips, news and useful resources.`,
+};
+---
+
+<PageLayout metadata={metadata}>
+  <div class="max-w-3xl mx-auto px-4 py-16">
+    <PostsByYear posts={posts} category={category} />
+  </div>
+</PageLayout>

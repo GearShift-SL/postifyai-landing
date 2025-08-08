@@ -1,8 +1,14 @@
 {
-  "extends": "astro/tsconfigs/base",
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*",
+    ".prettierrc.mjs"
+  ],
+  "exclude": [
+    "dist"
+  ],
   "compilerOptions": {
-    "strictNullChecks": true,
-    "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -11,8 +17,5 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
-  },
-  "exclude": [
-    "dist/"
-  ],
+  }
 }

@@ -1,44 +1,38 @@
-# Landing page based on AstroWind
+# Landing Page Astro Code
 
-Just clone this repo and follow the setup instructions below.
+## How to set this up
 
-## Setup
+### 1. Set up the site's meta
 
-### 1. Config
+Go to /src/config.ts and modify everything that's in there
 
-1. Update the `src/config.yaml` file with the site's information.
+### 2. Update branding
 
-### 2. Assets
+1. Under `/src/assets/favicon/` , update the 3 favicons in there
+2. Under `/src/icons/`, update `main-logo.svg`
+3. In `/src/styles/global.css`, update the brand's colors
 
-1. Replace the favicons in `src/assets/favicons` with your own.
-2. Replace the `src/assets/og_image.webp` with whatever OG image you want. The size of this image should be 1200 x 628.
-3. The logo should be placed in `src/assets/icons/logos/logo.svg`.
+### 3. Blog
 
-#### Note on Blog cover images and assets
+1. For the blog you just need to substitute the articles in content with the following structure:
 
-1. Cover image should be placed in `src/assets/images/blog/<blog slug>/cover.png`
-2. Subsequent images should be placed in `src/assets/images/blog/<blog slug>/` with the naming convention `image-1.png`, `image-2.png`, etc.
+   ```
+   src/
+   ├─ content/
+   ├─ blog/
+       ├─ article-1/
+           ├─ index.mdx
+           ├─ cover.png
+   ```
 
-#### 3. Index
+2. Also update the `/src/components/blog/articleCTA.tsx` to whatever you want.
 
-Update all the copy in `src/pages/index.astro`.
+### 4. Update the landing and other stuff
 
-### 4. Header & Footer
+Update `/src/pages/index.astro` with whatever content you want.
 
-Go to `src/navigation.js` and update the header and footer links.
+`/src/components/landing/` has a list of useful components used here.
 
-### 5. APIs and forms
+### 5. ntfy functionality
 
-There are 3 premade forms with their API endpoints. You can find the endpoints in `src/pages/api/`.
-
-Remove or add forms as needed.
-
-> Remember to update the `.env` file with the relevant API keys and variables.
-
-### 6. Personalisation
-
-Customize the brand colors in `src/components/CustomStyles.astro`.
-
-#### Note on customizing config.yaml
-
-If you want to add any variable to `config.yaml`, you will need to modify `configBuilder.ts` so that it's aware of the new variable.
+Under `/src/utils/` there is `ntfy.ts`, you can use this wherever to send alerts if a user does something.
