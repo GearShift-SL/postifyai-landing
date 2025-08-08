@@ -86,9 +86,10 @@ export const NAVIGATION = (): NavigationConfig => ({
       {
         title: "Postify AI",
         links: [
-          { text: "How it works", href: `/#features` },
-          { text: "About us", href: `/#about` },
+          { text: "How it works", href: `/#how-it-works` },
+          { text: "Features", href: `/#features` },
           { text: "Changelog", href: `/changelog/` },
+          { text: "GitHub", href: `https://github.com/dontic/postifyai` },
         ],
       },
       {

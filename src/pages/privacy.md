@@ -5,7 +5,7 @@ layout: "~/layouts/MarkdownLayout.astro"
 
 _Last updated_: July 30, 2024
 
-When you use SynCal, you entrust us with some of your information. We understand that this is a big responsibility, and we work hard to protect your information and give you control.
+When you use Postify AI, you entrust us with some of your information. We understand that this is a big responsibility, and we work hard to protect your information and give you control.
 
 This Privacy Policy is intended to help you understand what information we collect, why we collect it, and how you can update, manage, export, and delete your information.
 
@@ -61,7 +61,7 @@ When you access the Service by or through a mobile device, we may collect certai
 
 We may also collect information that your browser sends whenever you visit our Service or when you access the Service by or through a mobile device.
 
-### SynCal-specific data
+### Postify AI-specific data
 
 #### Usage logs
 
@@ -69,17 +69,9 @@ We may also collect information that your browser sends whenever you visit our S
 
 We collect general information about how you use the Service, such as the views you use, the features you use, the actions you take, and how often you use the Service. For example, we record the last time you logged into the Service or how many events you created.
 
-#### Calendar metadata
-
-When you link an external calendar provider such as Google Calendar, Microsoft Exchange, Office 365, iCloud, or other CalDAV calendars, we collect the unique identifier and email address or username for these accounts. By default, passwords and access tokens are only stored locally and never leave your computer. In other words, we cannot remotely access your account with the information we collect.
-
-When provided by the calendar provider, we collect the calendar name, its settings, including time zone, and the email address associated with the account. We also collect general statistics such as the number of calendars in an account or the total number of events and contacts in each calendar.
-
-For some more advanced features, such as enabling shared availability and scheduling links, SynCal requires continuous access to the latest status of your calendar. In this case, you will be asked whether or not you want to connect the account to SynCal. If you agree, we will collect the account credentials, which will be stored in a secure manner.
-
 #### Surveys
 
-‍If you fill out research surveys on SynCal, we collect your responses to the questionnaires. Typically, the results of these surveys are anonymous and not linked to your SynCal profile. Sometimes, the survey may ask you to leave your email address. In this case, the survey is not anonymous and may be linked to your SynCal profile or your activities on SynCal. Please note that participation is always optional.
+‍If you fill out research surveys on Postify AI, we collect your responses to the questionnaires. Typically, the results of these surveys are anonymous and not linked to your Postify AI profile. Sometimes, the survey may ask you to leave your email address. In this case, the survey is not anonymous and may be linked to your Postify AI profile or your activities on Postify AI. Please note that participation is always optional.
 
 ## Tracking Technologies and Cookies
 
@@ -238,4 +230,4 @@ We advise you to review this Privacy Policy periodically for any changes. Change
 
 If you have any questions about this Privacy Policy, you can contact us
 
-- By email: hello@syncal.app
+- By email: hello@postifyai.com

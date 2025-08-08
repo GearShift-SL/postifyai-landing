@@ -151,4 +151,4 @@ We may update these Terms of Service in the future. Whenever we make a significa
 
 If you have any questions about these Terms and Conditions, you can contact us
 
-- By email: hello@syncal.app
+- By email: hello@postifyai.com

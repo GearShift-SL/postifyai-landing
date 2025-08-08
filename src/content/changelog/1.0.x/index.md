@@ -3,9 +3,9 @@ version: "1.0.x"
 date: 2025-08-15
 ---
 
-### Launching SynCal!
+### Launching Postify AI!
 
-We are launching SynCal, the best calendar syncing tool.
+We are launching Postify AI, the best AI SEO blog post generation tool.
 
 <!-- ### Otros
 
