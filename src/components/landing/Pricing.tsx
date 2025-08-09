@@ -13,7 +13,8 @@ const PricingTable = () => {
     const emailKey = new URLSearchParams(window.location.search).get("email");
     console.log(emailKey);
 
-    // If there is no email, redirect to the #hero section
+    // If there is no email, redirect to the #hero section so the user logs in
+    // TODO: Subsctitute this for a backend auth check
     if (!emailKey) {
       window.location.href = "/#hero";
       return;
@@ -46,41 +47,26 @@ const PricingTable = () => {
 
     // Redirect the user to /stripe-callback/ with the email as a query parameter
     window.location.href = `/stripe-callback/?email=${emailKey}`;
+    return; // Delete this row to enable stripe checkout
 
-    // // If plan is basic, redirect to basic page
-    // if (plan === "basic") {
-    //   if (isYearly) {
-    //     const stripeUrl = "#";
-    //     window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-    //   } else {
-    //     const stripeUrl = "#";
-    //     window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-    //   }
-    //   return;
-    // }
+    // If plan is pay as you go
+    if (plan === "pay-as-you-go") {
+      const stripeUrl = "https://buy.stripe.com/8x2bJ13BobcNbFc1As7ok00";
+      window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
+      return;
+    }
 
-    // // If plan is investor, redirect to investor page
-    // if (plan === "standard") {
-    //   if (isYearly) {
-    //     const stripeUrl = "#";
-    //     window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-    //   } else {
-    //     const stripeUrl = "#";
-    //     window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-    //   }
-    //   return;
-    // }
-
-    // // If plan is power user, redirect to power user page
-    // if (plan === "power-user") {
-    //   if (isYearly) {
-    //     const stripeUrl = "#";
-    //     window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-    //   } else {
-    //     const stripeUrl = "#";
-    //     window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-    //   }
-    // }
+    // If plan is standard, redirect to standard page
+    if (plan === "standard") {
+      if (isYearly) {
+        const stripeUrl = "https://buy.stripe.com/14AaEX8VI94FeRo4ME7ok02";
+        window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
+      } else {
+        const stripeUrl = "https://buy.stripe.com/8x27sLdbY6WxfVs2Ew7ok01";
+        window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
+      }
+      return;
+    }
   };
 
   return (
@@ -420,8 +406,8 @@ const PricingTable = () => {
               </div>
 
               <button
-                data-umami-event="Power user plan"
-                onClick={() => handleClick("power-user")}
+                data-umami-event="Pay as you go"
+                onClick={() => handleClick("pay-as-you-go")}
                 className="flex w-full text-center justify-center hover:cursor-pointer bg-gray-100 text-default py-3 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors"
               >
                 Add credits →
