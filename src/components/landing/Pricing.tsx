@@ -236,14 +236,14 @@ const PricingTable = () => {
               <p className="text-muted mb-6">Covers all your needs</p>
               <div className="mb-6">
                 <span className="text-4xl font-bold text-primary">
-                  💶 ${isYearly ? "29.90" : "29.90"}
+                  💶 ${isYearly ? "24.90" : "29.90"}
                 </span>
                 <span className="text-muted ml-2">/month</span>
               </div>
               {isYearly ? (
                 <div className="text-center mb-6">
                   <span className="text-lg text-muted font-medium">
-                    $358 billed annually
+                    $298.80 billed annually
                   </span>
                   <span className="block text-sm text-green-600 font-medium">
                     You get 2 months free!
@@ -255,7 +255,7 @@ const PricingTable = () => {
                     className="text-lg text-muted hover:cursor-pointer underline decoration-1 decoration-blue-400 hover:text-blue-400"
                     onClick={() => setIsYearly(true)}
                   >
-                    or $29.90/month
+                    or $24.90/month
                   </span>
                   <span
                     onClick={() => setIsYearly(true)}
