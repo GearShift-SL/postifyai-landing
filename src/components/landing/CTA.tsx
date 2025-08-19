@@ -239,7 +239,7 @@ const CTA = () => {
             </div>
 
             {/* Google Login */}
-            <GoogleOAuthProvider clientId="485134929350-3re79pjtshq7dhhvcike13e9a1nmh1c5.apps.googleusercontent.com">
+            <GoogleOAuthProvider clientId="370259082711-8t6vtage248pl6vjaulcom3nve1qes1r.apps.googleusercontent.com">
               <div className="flex justify-center w-full">
                 <GoogleLogin
                   onSuccess={handleGoogleLogin}
