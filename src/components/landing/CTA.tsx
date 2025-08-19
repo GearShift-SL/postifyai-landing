@@ -212,9 +212,13 @@ const CTA = () => {
         {isUserAuthenticated && (
           <div
             onClick={() => {
-              window.open(`${APP_URL}`, "_blank");
+              window.location.href = APP_URL;
             }}
-            className="text-center text-sm text-gray-600 mt-12 mb-4 hover:cursor-pointer rounded-lg p-4 bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="text-center text-sm text-white mt-12 mb-4 hover:cursor-pointer rounded-lg p-4 transition-colors"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-primary) 100%)",
+            }}
           >
             Go to the App
           </div>
