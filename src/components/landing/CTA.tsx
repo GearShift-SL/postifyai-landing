@@ -1,71 +1,99 @@
 import React, { useState } from "react";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+import {
+  GoogleOAuthProvider,
+  GoogleLogin,
+  type CredentialResponse,
+} from "@react-oauth/google";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+} from "@/components/ui/input-otp";
+import { navigate } from "astro:transitions/client";
+import { customAxiosInstance } from "@/api/axios";
+
+const APP_URL = "http://localhost:5173";
 
 const CTA = () => {
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
+  const [step, setStep] = useState<"signup" | "code-login">("signup");
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 
-  const processNewUser = async (email: string) => {
-    // Send the email to the waitlist
-    try {
-      const response = await fetch("https://waitlist.hlab.es/waitlist/users/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          waitlist_name: "postifyai_signup",
-          email: email,
-        }),
-      });
-
-      if (response.ok) {
-        setStatus("success");
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Something went wrong");
-      }
-    } catch (error) {
-      setStatus("error");
-      setMessage(
-        "We're having problems signing you up. Please try again later."
-      );
-    }
-
-    // Add the email to the url
-    window.history.pushState({}, "", `?email=${email}#pricing`);
-
-    // Redirect the user to the pricing section #pricing
-    // window.location.href = '#pricing';
-    // document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-    const section = document.getElementById("pricing");
-    if (section) {
-      const y = section.getBoundingClientRect().top + window.scrollY + 350;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleEmailLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Get the email from the form
     const formData = new FormData(e.target as HTMLFormElement);
     const email = formData.get("email") as string;
 
-    // The form will not submit if the email is invalid due to the "required" and "type=email" attributes
-    setStatus("loading");
+    try {
+      await customAxiosInstance({
+        url: "/auth/browser/start/",
+        method: "POST",
+        data: { email: email },
+      });
 
-    processNewUser(email);
+      setStep("code-login");
+    } catch (error: any) {
+      // 401 means the code was sent successfully
+      if (error?.response?.status === 401) {
+        console.debug("Code sent successfully");
+        setStep("code-login");
+        return;
+      }
+
+      // Handle other errors
+      console.error(error);
+    }
   };
 
-  const handleGoogleLogin = (credentialResponse: any) => {
-    console.log("Google login");
-    const decoded: any = jwtDecode(credentialResponse.credential);
-    const email = decoded.email;
-    console.log("Collected email:", email);
+  const handleCodeLogin = async (code: string) => {
+    try {
+      await customAxiosInstance({
+        url: "/auth/browser/code/confirm/",
+        method: "POST",
+        data: { code: code },
+      });
 
-    processNewUser(email);
+      console.log("Logged in with code");
+      setIsUserAuthenticated(true);
+      // Navigate to the app in a new tab
+      window.open(`${APP_URL}`, "_blank");
+    } catch (error: any) {
+      console.error("Error logging in with code", error);
+    }
+  };
+
+  const handleGoogleLogin = async (credentialResponse: CredentialResponse) => {
+    if (!credentialResponse.credential) {
+      console.error("No credential found");
+      return;
+    }
+
+    // Send the credential to the allauth api provider token endpoint
+    try {
+      await customAxiosInstance({
+        url: "/auth/browser/provider/token/",
+        method: "POST",
+        data: {
+          provider: "google",
+          process: "login",
+          token: {
+            client_id: credentialResponse.clientId ?? "",
+            id_token: credentialResponse.credential,
+          },
+        },
+      });
+
+      console.debug("Logged in with Google");
+      setIsUserAuthenticated(true);
+
+      // Navigate to the app in a new tab
+      window.open(`${APP_URL}`, "_blank");
+    } catch (error: any) {
+      console.error("Error logging in with Google", error);
+    }
   };
 
   // CSS animation styles
@@ -96,6 +124,23 @@ const CTA = () => {
     };
   }, []);
 
+  // useEffect to check if the user is logged in
+  React.useEffect(() => {
+    const checkIfLoggedIn = async () => {
+      try {
+        const response = await customAxiosInstance({
+          url: "/auth/user/me/",
+          method: "GET",
+        });
+
+        setIsUserAuthenticated(true);
+      } catch (error: any) {
+        console.error("Error checking if user is logged in", error);
+      }
+    };
+    checkIfLoggedIn();
+  }, []);
+
   return (
     <div className="bg-white rounded-2xl shadow-2xl px-8 pb-8 pt-2 border border-gray-100 relative">
       {/* Green Speech Bubble Banner */}
@@ -107,37 +152,73 @@ const CTA = () => {
       </div>
 
       <div className="mt-6">
-        <form onSubmit={handleSubmit}>
-          {/* Email Input */}
-          <div className="mb-4">
-            <input
-              type="email"
-              name="email"
-              placeholder="email@example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 placeholder-gray-500"
-              required
-            />
+        {step === "signup" && !isUserAuthenticated && (
+          <form onSubmit={handleEmailLogin}>
+            {/* Email Input */}
+            <div className="mb-4">
+              <input
+                type="email"
+                name="email"
+                placeholder="email@example.com"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 placeholder-gray-500"
+                required
+              />
+            </div>
+
+            {/* Main CTA Button with Flash Animation */}
+            <button
+              type="submit"
+              data-umami-event="Signup button"
+              className="hidden sm:block w-full text-white py-3 px-6 rounded-lg font-semibold text-center mb-4 hover:cursor-pointer hover:scale-105 hover:shadow-lg"
+              style={flashButtonStyle}
+            >
+              Create your first SEO blog post now →
+            </button>
+
+            <button
+              type="submit"
+              data-umami-event="Signup button"
+              className="block sm:hidden w-full text-white py-3 px-6 rounded-lg font-semibold text-center mb-4 hover:cursor-pointer hover:scale-105 hover:shadow-lg"
+              style={flashButtonStyle}
+            >
+              Create your first SEO blog post now →
+            </button>
+          </form>
+        )}
+
+        {step === "code-login" && !isUserAuthenticated && (
+          <div className="flex flex-col items-center justify-center my-10">
+            <div className="text-muted-foreground text-center text-sm">
+              We've sent you a code to your email. Please enter it below.
+            </div>
+            <div className="flex w-full justify-center">
+              <InputOTP maxLength={6} onComplete={handleCodeLogin}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                </InputOTPGroup>
+                <InputOTPSeparator />
+                <InputOTPGroup>
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
           </div>
+        )}
 
-          {/* Main CTA Button with Flash Animation */}
-          <button
-            type="submit"
-            data-umami-event="Signup button"
-            className="hidden sm:block w-full text-white py-3 px-6 rounded-lg font-semibold text-center mb-4 hover:cursor-pointer hover:scale-105 hover:shadow-lg"
-            style={flashButtonStyle}
+        {isUserAuthenticated && (
+          <div
+            onClick={() => {
+              window.open(`${APP_URL}`, "_blank");
+            }}
+            className="text-center text-sm text-gray-600 mt-12 mb-4 hover:cursor-pointer rounded-lg p-4 bg-gray-100 hover:bg-gray-200 transition-colors"
           >
-            Create your first SEO blog post now →
-          </button>
-
-          <button
-            type="submit"
-            data-umami-event="Signup button"
-            className="block sm:hidden w-full text-white py-3 px-6 rounded-lg font-semibold text-center mb-4 hover:cursor-pointer hover:scale-105 hover:shadow-lg"
-            style={flashButtonStyle}
-          >
-            Create your first SEO blog post now →
-          </button>
-        </form>
+            Go to the App
+          </div>
+        )}
 
         {/* Stats */}
         <div className="text-center text-sm text-gray-600 mb-4">
