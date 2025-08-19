@@ -1,7 +1,22 @@
+import { customAxiosInstance } from "@/api/axios";
 import { useState } from "react";
 
 const PricingTable = () => {
   const [isYearly, setIsYearly] = useState(true);
+
+  const checkIfLoggedIn = async () => {
+    try {
+      await customAxiosInstance({
+        url: "/auth/user/me/",
+        method: "GET",
+      });
+
+      return true;
+    } catch (error) {
+      console.error("Error checking if user is logged in", error);
+      return false;
+    }
+  };
 
   const handleClick = async (plan: string) => {
     if (plan === "github") {
@@ -9,64 +24,16 @@ const PricingTable = () => {
       return;
     }
 
-    // Get the email key from the url
-    const emailKey = new URLSearchParams(window.location.search).get("email");
-    console.log(emailKey);
+    // Check if the user is authenticated
+    const isUserAuthenticated = await checkIfLoggedIn();
 
-    // If there is no email, redirect to the #hero section so the user logs in
-    // TODO: Subsctitute this for a backend auth check
-    if (!emailKey) {
+    if (!isUserAuthenticated) {
       window.location.href = "/#hero";
       return;
     }
 
-    // Add user to the purchase waitlist
-    const waitlistUrl = "https://waitlist.hlab.es/waitlist/users/";
-    // Send the email to the waitlist
-    try {
-      const response = await fetch("https://waitlist.hlab.es/waitlist/users/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          waitlist_name: "postifyai_purchase",
-          email: emailKey,
-        }),
-      });
-
-      if (response.ok) {
-        console.log("User added to the waitlist");
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Something went wrong");
-      }
-    } catch (error) {
-      console.error("Error adding user to the waitlist", error);
-    }
-
-    // Redirect the user to /stripe-callback/ with the email as a query parameter
-    window.location.href = `/stripe-callback/?email=${emailKey}`;
-    return; // Delete this row to enable stripe checkout
-
-    // If plan is pay as you go
-    if (plan === "pay-as-you-go") {
-      const stripeUrl = "https://buy.stripe.com/8x2bJ13BobcNbFc1As7ok00";
-      window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-      return;
-    }
-
-    // If plan is standard, redirect to standard page
-    if (plan === "standard") {
-      if (isYearly) {
-        const stripeUrl = "https://buy.stripe.com/14AaEX8VI94FeRo4ME7ok02";
-        window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-      } else {
-        const stripeUrl = "https://buy.stripe.com/8x27sLdbY6WxfVs2Ew7ok01";
-        window.open(`${stripeUrl}?prefilled_email=${emailKey}`, "_blank");
-      }
-      return;
-    }
+    // Otherwise, redirect the user to the app in a new window
+    window.open(`https://app.postifyai.com`, "_blank");
   };
 
   return (
@@ -256,7 +223,7 @@ const PricingTable = () => {
                 onClick={() => handleClick("standard")}
                 className="w-full cta-primary mb-6"
               >
-                {isYearly ? "Start yearly plan" : "Start monthly plan"}
+                Start for free! →
               </button>
             </div>
 
@@ -410,7 +377,7 @@ const PricingTable = () => {
                 onClick={() => handleClick("pay-as-you-go")}
                 className="flex w-full text-center justify-center hover:cursor-pointer bg-gray-100 text-default py-3 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors"
               >
-                Add credits →
+                Start for free! →
               </button>
             </div>
 
