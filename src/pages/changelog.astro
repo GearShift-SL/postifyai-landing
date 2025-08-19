@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import PageLayout from '~/layouts/PageLayout.astro';
-import ChangelogCard from '~/components/changelog/ChangelogCard.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import ChangelogCard from '@/components/changelog/ChangelogCard.astro';
 
 const changelogEntries = await getCollection('changelog');
 

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import PageLayout from '~/layouts/PageLayout.astro';
-import PostsByYear from '~/components/blog/PostsByYear.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import PostsByYear from '@/components/blog/PostsByYear.astro';
 
 export async function getStaticPaths() {
   // Create a flat array of paths for each language and category combination

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import PageLayout from '~/layouts/PageLayout.astro';
-import PostsByYear from '~/components/blog/PostsByYear.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import PostsByYear from '@/components/blog/PostsByYear.astro';
 
 const posts = await getCollection('blog');
 const publishedPosts = posts.filter((post) => post.data.draft !== true);

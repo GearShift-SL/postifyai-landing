@@ -1,14 +1,14 @@
 ---
 import type { ImageMetadata } from 'astro';
 
-import Favicons from '~/meta/Favicons.astro';
-import '~/styles/global.css';
+import Favicons from '@/meta/Favicons.astro';
+import '@/styles/global.css';
 import '@fontsource-variable/inter';
-import BasicScripts from '~/components/common/BasicScripts.astro';
-import { SITE } from '~/config';
+import BasicScripts from '@/components/common/BasicScripts.astro';
+import { SITE } from '@/config';
 import { SEO } from 'astro-seo';
 
-import importImage from '~/utils/importImage';
+import importImage from '@/utils/importImage';
 
 // Accept metadata props that can be passed from blog posts
 export interface Props {

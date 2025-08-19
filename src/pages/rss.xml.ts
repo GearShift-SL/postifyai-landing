@@ -1,16 +1,18 @@
 // RSS feed for es blog posts
 
-import rss from '@astrojs/rss';
-import { SITE } from '~/config';
-import { getCollection } from 'astro:content';
-import getSortedPosts from '~/utils/getSortedPosts';
+import rss from "@astrojs/rss";
+import { SITE } from "@/config";
+import { getCollection } from "astro:content";
+import getSortedPosts from "@/utils/getSortedPosts";
 
 export async function GET(context: any) {
-  const unsortedPosts = await getCollection('blog', ({ data }) => {
+  const unsortedPosts = await getCollection("blog", ({ data }) => {
     return data.draft !== true;
   });
 
-  const postsByLang = unsortedPosts.filter((post) => post.id.split('/')[0] === 'es');
+  const postsByLang = unsortedPosts.filter(
+    (post) => post.id.split("/")[0] === "es"
+  );
 
   const posts = getSortedPosts(postsByLang);
   return rss({
@@ -27,7 +29,7 @@ export async function GET(context: any) {
       title: data.title,
       description: data.description,
       pubDate: new Date(data.modDatetime ?? data.pubDatetime),
-      link: `/es/blog/${id.split('/')[1]}/`,
+      link: `/es/blog/${id.split("/")[1]}/`,
     })),
     // (optional) inject custom xml
     customData: `<language>es</language>`,
