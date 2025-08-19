@@ -60,7 +60,7 @@ const CTA = () => {
       console.log("Logged in with code");
       setIsUserAuthenticated(true);
       // Navigate to the app in a new tab
-      window.open(`${APP_URL}`, "_blank");
+      window.location.assign(APP_URL);
     } catch (error: any) {
       console.error("Error logging in with code", error);
     }
@@ -91,7 +91,7 @@ const CTA = () => {
       setIsUserAuthenticated(true);
 
       // Navigate to the app in a new tab
-      window.open(`${APP_URL}`, "_blank");
+      window.location.assign(APP_URL);
     } catch (error: any) {
       console.error("Error logging in with Google", error);
     }
