@@ -229,28 +229,32 @@ const CTA = () => {
           ⭐ 2.318 SEO blog posts created this month
         </div>
 
-        {/* <!-- Separator with " o " in the middle --> */}
-        <div className="flex justify-center items-center">
-          <div className="w-full h-px bg-gray-200 my-4"></div>
-          <span className="text-gray-500 px-2">or</span>
-          <div className="w-full h-px bg-gray-200 my-4"></div>
-        </div>
+        {!isUserAuthenticated && (
+          <>
+            {/* <!-- Separator with " o " in the middle --> */}
+            <div className="flex justify-center items-center">
+              <div className="w-full h-px bg-gray-200 my-4"></div>
+              <span className="text-gray-500 px-2">or</span>
+              <div className="w-full h-px bg-gray-200 my-4"></div>
+            </div>
 
-        {/* Google Login */}
-        <GoogleOAuthProvider clientId="485134929350-3re79pjtshq7dhhvcike13e9a1nmh1c5.apps.googleusercontent.com">
-          <div className="flex justify-center w-full">
-            <GoogleLogin
-              onSuccess={handleGoogleLogin}
-              onError={() => console.log("Google Login Failed")}
-              // useOneTap // Optional: show auto-login prompt
-              theme="outline"
-              type="standard"
-              shape="circle"
-              text="signin_with"
-              size="large"
-            />
-          </div>
-        </GoogleOAuthProvider>
+            {/* Google Login */}
+            <GoogleOAuthProvider clientId="485134929350-3re79pjtshq7dhhvcike13e9a1nmh1c5.apps.googleusercontent.com">
+              <div className="flex justify-center w-full">
+                <GoogleLogin
+                  onSuccess={handleGoogleLogin}
+                  onError={() => console.log("Google Login Failed")}
+                  // useOneTap // Optional: show auto-login prompt
+                  theme="outline"
+                  type="standard"
+                  shape="circle"
+                  text="signin_with"
+                  size="large"
+                />
+              </div>
+            </GoogleOAuthProvider>
+          </>
+        )}
 
         <div className="text-center text-xs text-gray-500 mt-3">
           If you already have an account, we'll log you in automatically
