@@ -10,10 +10,11 @@ import {
   InputOTPSlot,
   InputOTPSeparator,
 } from "@/components/ui/input-otp";
-import { navigate } from "astro:transitions/client";
 import { customAxiosInstance } from "@/api/axios";
 
-const APP_URL = "http://localhost:5173";
+const APP_URL = import.meta.env.DEV
+  ? "http://localhost:5173"
+  : "https://app.postifyai.com";
 
 const CTA = () => {
   const [status, setStatus] = useState("idle");
