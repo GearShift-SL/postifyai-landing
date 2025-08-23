@@ -48,9 +48,9 @@ type NavigationConfig = {
 
 export const SITE = (): SiteConfig => {
   return {
-    title: "Postify AI - Automate SEO blog posts",
+    title: "Postify AI - Automate your SEO with AI",
     description:
-      "Postify AI is a tool that helps you create SEO blog posts with AI in seconds.",
+      "Postify AI is a tool that helps you automate your SEO content creation with AI in seconds.",
     author: "Daniel García",
     siteUrl: "https://postifyai.com/",
     ogImage: "/src/assets/images/og-image.webp", // Needs to be an absolute path /src/...
@@ -67,7 +67,7 @@ export const NAVIGATION = (): NavigationConfig => ({
     actions: [
       {
         href: `/#hero`,
-        text: "Create your first post",
+        text: "Create your first post 🚀",
         // icon: 'tabler:rocket',
       },
     ],
