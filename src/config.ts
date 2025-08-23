@@ -111,9 +111,18 @@ export const NAVIGATION = (): NavigationConfig => ({
       {
         ariaLabel: "X",
         icon: "tabler:brand-x",
-        href: "https://x.com/postifyai",
+        href: "https://x.com/postify_ai",
       },
-      // { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/syncalapp' },
+      {
+        ariaLabel: "Instagram",
+        icon: "tabler:brand-instagram",
+        href: "https://instagram.com/postifyai_seo",
+      },
+      {
+        ariaLabel: "LinkedIn",
+        icon: "tabler:brand-linkedin",
+        href: "https://linkedin.com/company/postifyaicom",
+      },
       // { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://facebook.com/syncalapp' },
       { ariaLabel: "RSS", icon: "tabler:rss", href: `/rss.xml` },
     ],
