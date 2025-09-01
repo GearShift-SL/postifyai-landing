@@ -123,7 +123,11 @@ export const NAVIGATION = (): NavigationConfig => ({
         icon: "tabler:brand-linkedin",
         href: "https://linkedin.com/company/postifyaicom",
       },
-      // { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://facebook.com/syncalapp' },
+      {
+        ariaLabel: "Facebook",
+        icon: "tabler:brand-facebook",
+        href: "https://www.facebook.com/postifyseo",
+      },
       { ariaLabel: "RSS", icon: "tabler:rss", href: `/rss.xml` },
     ],
     footNote: `
