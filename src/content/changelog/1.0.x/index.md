@@ -3,9 +3,9 @@ version: "1.0.x"
 date: 2025-08-15
 ---
 
-### Launching Postify AI!
+### Launching miseo AI!
 
-We are launching Postify AI, the best AI SEO blog post generation tool.
+We are launching miseo AI, the best AI SEO blog post generation tool.
 
 <!-- ### Otros
 

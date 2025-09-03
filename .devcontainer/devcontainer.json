@@ -1,6 +1,6 @@
 // devcontainer.json
 {
-  "name": "PostifyAI Landing", // Name of the dev container
+  "name": "miseo AI Landing", // Name of the dev container
   "shutdownAction": "stopContainer", // Container behavior on VSCode close: none, stopContainer (default for image or Dockerfile), and stopCompose (default for Docker Compose)
   "build": {
     "dockerfile": "Dockerfile",
@@ -24,7 +24,13 @@
         "jock.svg" // SVG
       ],
       "settings": {
-        "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "astro",
+          "typescript",
+          "typescriptreact"
+        ],
         // Prettier settings
         "prettier.enable": true,
         "editor.formatOnSave": true, // Format files on save
@@ -66,5 +72,7 @@
       }
     }
   },
-  "mounts": ["source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"]
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+  ]
 }

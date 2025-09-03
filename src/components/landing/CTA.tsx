@@ -14,7 +14,7 @@ import { customAxiosInstance } from "@/api/axios";
 
 const APP_URL = import.meta.env.DEV
   ? "http://localhost:5173"
-  : "https://app.postifyai.com";
+  : "https://app.miseo.ai";
 
 const CTA = () => {
   const [status, setStatus] = useState("idle");

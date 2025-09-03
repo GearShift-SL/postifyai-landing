@@ -6,7 +6,7 @@ import type { AxiosRequestConfig } from "axios";
 export const customAxios = axios.create({
   baseURL: import.meta.env.DEV
     ? "http://localhost:8000"
-    : "https://api.postifyai.com",
+    : "https://api.miseo.ai",
   timeout: 10000,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,

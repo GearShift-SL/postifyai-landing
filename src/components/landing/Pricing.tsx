@@ -20,7 +20,7 @@ const PricingTable = () => {
 
   const handleClick = async (plan: string) => {
     if (plan === "github") {
-      window.open("https://github.com/dontic/postifyai", "_blank");
+      window.open("https://github.com/dontic/miseoai", "_blank");
       return;
     }
 
@@ -33,7 +33,7 @@ const PricingTable = () => {
     }
 
     // Otherwise, redirect the user to the app in a new window
-    window.open(`https://app.postifyai.com`, "_blank");
+    window.open(`https://app.miseo.ai`, "_blank");
   };
 
   return (
@@ -98,7 +98,7 @@ const PricingTable = () => {
               </div>
               <div className="text-center mb-6">
                 <span className="text-lg text-muted font-medium">
-                  Postify AI is an open-source project!
+                  miseo AI is an open-source project!
                 </span>
               </div>
 

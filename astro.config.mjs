@@ -14,11 +14,11 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  site: "https://postifyai.com",
+  site: "https://miseo.ai",
   integrations: [
     icon(),
     sitemap({
-      filter: (page) => page !== "https://postifyai.com/stripe-callback/",
+      filter: (page) => page !== "https://miseo.ai/stripe-callback/",
     }),
     mdx(),
     react(),

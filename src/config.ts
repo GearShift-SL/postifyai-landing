@@ -48,15 +48,15 @@ type NavigationConfig = {
 
 export const SITE = (): SiteConfig => {
   return {
-    title: "Postify AI - Automate your SEO with AI",
+    title: "miseo AI - Automate your SEO with AI",
     description:
-      "Postify AI is a tool that helps you automate your SEO content creation with AI in seconds.",
+      "miseo AI is a tool that helps you automate your SEO content creation with AI in seconds.",
     author: "Daniel García",
-    siteUrl: "https://postifyai.com/",
+    siteUrl: "https://miseo.ai/",
     ogImage: "/src/assets/images/og-image.webp", // Needs to be an absolute path /src/...
     locale: "en_US",
     twitter: {
-      site: "@postifyai",
+      site: "@miseoai",
     },
   };
 };
@@ -84,7 +84,7 @@ export const NAVIGATION = (): NavigationConfig => ({
         ],
       },
       {
-        title: "Postify AI",
+        title: "miseo AI",
         links: [
           { text: "How it works", href: `/#how-it-works` },
           { text: "Features", href: `/#features` },
@@ -96,7 +96,7 @@ export const NAVIGATION = (): NavigationConfig => ({
         title: "GearShift Universe",
         links: [
           { text: "GearShift", href: "https://gearshift.es/" },
-          { text: "postify AI", href: "https://postifyai.com/" },
+          { text: "miseo AI", href: "https://miseo.ai/" },
           { text: "Estavia", href: "https://estavia.ai/" },
           { text: "AutoIPC", href: "https://autoipc.es/" },
           { text: "SynCal", href: "https://syncal.app/" },
@@ -111,29 +111,29 @@ export const NAVIGATION = (): NavigationConfig => ({
       {
         ariaLabel: "X",
         icon: "tabler:brand-x",
-        href: "https://x.com/postify_ai",
+        href: "https://x.com/miseoai",
       },
       {
         ariaLabel: "Instagram",
         icon: "tabler:brand-instagram",
-        href: "https://instagram.com/postifyai_seo",
+        href: "https://instagram.com/miseoai",
       },
       {
         ariaLabel: "LinkedIn",
         icon: "tabler:brand-linkedin",
-        href: "https://linkedin.com/company/postifyaicom",
+        href: "https://linkedin.com/company/miseoai",
       },
       {
         ariaLabel: "Facebook",
         icon: "tabler:brand-facebook",
-        href: "https://www.facebook.com/postifyseo",
+        href: "https://www.facebook.com/miseoai",
       },
       { ariaLabel: "RSS", icon: "tabler:rss", href: `/rss.xml` },
     ],
     footNote: `
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
         >© 2025 <a href="/" class="hover:underline"
-          >Postify AI</a
+          >miseo AI</a
         >
       </span>
         `,
