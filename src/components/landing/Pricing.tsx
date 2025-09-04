@@ -88,7 +88,7 @@ const PricingTable = () => {
               <h3 className="text-2xl font-bold text-default mb-2">Pay as you go</h3>
               <p className="text-muted mb-6">Perfect for casual use</p>
               <div className="mb-6">
-                <span className="text-4xl font-bold text-default">💶 $4,90</span>
+                <span className="text-4xl font-bold text-default">💶 $3,90</span>
                 <span className="text-muted ml-2">/blog post</span>
               </div>
               <div className="text-center mb-6">
@@ -107,66 +107,32 @@ const PricingTable = () => {
             </div>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Zero configuration, zero maintenance</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Basic blog generation</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Manual brand awareness</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Automatic competitor awareness</span>
-              </div>
+              {[
+                'Zero configuration, zero maintenance',
+                'Basic blog generation',
+                'Basic brand awareness',
+                '4 keyword research',
+                'Automatic competitor analysis',
+              ].map((feature: string) => (
+                <div className="flex items-center">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-default" dangerouslySetInnerHTML={{ __html: feature }} />
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Standard Plan (Popular) */}
+          {/* PRO Plan (Popular) */}
           <div className="bg-white border-2 border-primary rounded-2xl p-8 shadow-lg relative transform scale-105">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <span className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">
@@ -176,17 +142,17 @@ const PricingTable = () => {
             </div>
 
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-default mb-2">Standard</h3>
+              <h3 className="text-2xl font-bold text-default mb-2">PRO</h3>
               <p className="text-muted mb-6">Covers all your needs</p>
               <div className="mb-6">
                 <span className="text-4xl font-bold text-primary">
-                  💶 ${isYearly ? '24.90' : '29.90'}
+                  💶 ${isYearly ? '33.20' : '39.90'}
                 </span>
                 <span className="text-muted ml-2">/month</span>
               </div>
               {isYearly ? (
                 <div className="text-center mb-6">
-                  <span className="text-lg text-muted font-medium">$298.80 billed annually</span>
+                  <span className="text-lg text-muted font-medium">$398.40 billed annually</span>
                   <span className="block text-sm text-green-600 font-medium">
                     You get 2 months free!
                   </span>
@@ -197,7 +163,7 @@ const PricingTable = () => {
                     className="text-lg text-muted hover:cursor-pointer underline decoration-1 decoration-blue-400 hover:text-blue-400"
                     onClick={() => setIsYearly(true)}
                   >
-                    or $24.90/month
+                    or $33.20/month
                   </span>
                   <span
                     onClick={() => setIsYearly(true)}
@@ -208,7 +174,7 @@ const PricingTable = () => {
                 </div>
               )}
               <button
-                data-umami-event="Standard plan"
+                data-umami-event="PRO plan"
                 onClick={() => handleClick('standard')}
                 className="w-full cta-primary mb-6"
               >
@@ -217,138 +183,32 @@ const PricingTable = () => {
             </div>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">
-                  <strong>Zero configuration, zero maintenance</strong>
-                </span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">
-                  Up to 10 blog posts per month
-                  <br />
-                  ($2.90 per post after that)
-                </span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Backlink generation</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Brand analysis</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Enhanced genaration</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Keyword research</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Catered blog post title ideas</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Tech support</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Integration with your CMS (comming soon!)</span>
-              </div>
+              {[
+                '<strong>Zero configuration, zero maintenance</strong>',
+                '20 blog articles per month ($2.90/post after that)',
+                '<strong>FREE</strong> SEO step-by-step guide (value $400)',
+                'Unlimited brands',
+                'Unlimited keyword research',
+                'Catered post title ideas based on keywords',
+                'Automatic brand awareness',
+                'Integration with your CMS (comming soon!)',
+                'Automatic competitor analysis',
+              ].map((feature: string) => (
+                <div className="flex items-center">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-default" dangerouslySetInnerHTML={{ __html: feature }} />
+                </div>
+              ))}
             </div>
           </div>
 
@@ -377,76 +237,28 @@ const PricingTable = () => {
             </div>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Custom integration support</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Dedicated account manager</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Priority support</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Custom feature development</span>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-default">Unlimited blog posts</span>
-              </div>
+              {[
+                'Custom integration support',
+                'Dedicated account manager',
+                'Priority support',
+                'Custom feature development',
+                'Unlimited blog posts',
+              ].map((feature: string) => (
+                <div className="flex items-center">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-default" dangerouslySetInnerHTML={{ __html: feature }} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
