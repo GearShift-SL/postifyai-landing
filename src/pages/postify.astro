@@ -12,110 +12,118 @@ import CTA from '@/components/landing/CTA';
 import { Icon } from 'astro-icon/components';
 ---
 
-<PageLayout>
+<PageLayout
+  metadata={{
+    title: 'miseo AI - Automate SEO content generation',
+    description:
+      'miseo AI is a tool that helps you create SEO content catered for your brand with AI in seconds.',
+  }}
+>
   <section id="hero" class="scroll-mt-24">
-    <section id="hero" class="scroll-mt-24">
-      <div class="max-w-7xl mx-auto px-4 mt-16 relative">
-        <div class="flex flex-col lg:flex-row items-center lg:gap-12 gap-2">
-          {/* Left Column - Main Content */}
-          <div class="flex-1 text-center lg:text-left">
-            {/* Badge */}
-            <div
-              class="inline-flex items-center bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-            >
-              <Icon name="main-logo" class="text-sm mr-2" />
-              #1 SEO automation tool
-              <span class="ml-2">⭐⭐⭐⭐⭐</span>
-            </div>
-
-            {/* Main Heading */}
-            <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              Start ranking on Google,<br />
-              <span class="text-primary">higher and faster</span>
-            </h1>
-
-            {/* Features List */}
-            <div class="space-y-4 mb-8 text-left">
-              <div class="flex items-start gap-3">
-                <span class="text-2xl">🅱️</span>
-                <div>
-                  <a
-                    href="#feature-0"
-                    class="font-semibold underline decoration-2 decoration-primary hover:decoration-primary/50"
-                    >Fill in your brand's website</a
-                  >
-                  <span class="text-gray-600">
-                    → miseo AI will <a
-                      href="#how-to-use"
-                      class="underline decoration-2 decoration-primary hover:decoration-primary/50"
-                      >generate SEO blog posts for you in seconds</a
-                    >
-                  </span>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-2xl">📄</span>
-                <div>
-                  <span class="font-semibold"
-                    >miseo AI <a
-                      href="#feature-0"
-                      class="underline decoration-2 decoration-primary hover:decoration-primary/50"
-                      >analyzes your brand
-                    </a> to find the blog ideas and content</span
-                  >
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-2xl">📊</span>
-                <div>
-                  <span class="font-semibold">
-                    <a
-                      href="#feature-1"
-                      class="underline decoration-2 decoration-primary hover:decoration-primary/50"
-                      >Analyzes your competitors to rank higher</a
-                    > in search engines</span
-                  >
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-2xl">⚡</span>
-                <div>
-                  <span class="font-semibold">
-                    <a
-                      href="#feature-2"
-                      class="underline decoration-2 decoration-primary hover:decoration-primary/50"
-                      >Keyword research</a
-                    > for your brand</span
-                  >
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-2xl">🧑‍💻</span>
-                <div>
-                  <span class="font-semibold">
-                    postify AI is <a
-                      href="#open-source"
-                      class="underline decoration-2 decoration-primary hover:decoration-primary/50"
-                      >Open Source</a
-                    > and free to use!</span
-                  >
-                </div>
-              </div>
-            </div>
+    <div class="max-w-7xl mx-auto px-4 mt-16 relative">
+      <div class="flex flex-col lg:flex-row items-center lg:gap-12 gap-2">
+        {/* Left Column - Main Content */}
+        <div class="flex-1 text-center lg:text-left">
+          {/* Badge */}
+          <div
+            class="inline-flex items-center bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
+          >
+            <Icon name="main-logo" class="text-sm mr-2" />
+            #1 SEO blog post generator
+            <span class="ml-2">⭐⭐⭐⭐⭐</span>
           </div>
 
-          {/* Right Column - Signup Form */}
-          <div class="flex-1 max-w-md">
-            <CTA client:load />
+          {/* Main Heading */}
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+            Create SEO blog content<br />
+            <span class="text-primary">on autopilot</span>
+          </h1>
+
+          {/* Features List */}
+          <div class="space-y-4 mb-8 text-left">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">🅱️</span>
+              <div>
+                <a
+                  href="#feature-0"
+                  class="font-semibold underline decoration-2 decoration-primary hover:decoration-primary/50"
+                  >Fill in your brand's website</a
+                >
+                <span class="text-gray-600">
+                  → miseo AI will <a
+                    href="#how-to-use"
+                    class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                    >generate SEO blog posts for you in seconds</a
+                  >
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">📄</span>
+              <div>
+                <span class="font-semibold"
+                  >miseo AI <a
+                    href="#feature-0"
+                    class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                    >analyzes your brand
+                  </a> to find the blog ideas and content</span
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">📊</span>
+              <div>
+                <span class="font-semibold">
+                  <a
+                    href="#feature-1"
+                    class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                    >Analyzes your competitors to rank higher</a
+                  > in search engines</span
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">⚡</span>
+              <div>
+                <span class="font-semibold">
+                  <a
+                    href="#feature-2"
+                    class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                    >Keyword research</a
+                  > for your brand</span
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">🧑‍💻</span>
+              <div>
+                <span class="font-semibold">
+                  postify AI is <a
+                    href="#open-source"
+                    class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                    >Open Source</a
+                  > and free to use!</span
+                >
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Right Column - Signup Form */}
+        <div class="flex-1 max-w-md">
+          <CTA client:load />
+        </div>
       </div>
-    </section>
+    </div>
   </section>
+
+  <!-- <section id="demovideo">
+    <DemoVideo />
+  </section> -->
 
   <section id="social-proof">
     <AsSeenOn
@@ -171,8 +179,8 @@ import { Icon } from 'astro-icon/components';
       ]}
       solutions={[
         'Create SEO blog posts in seconds',
-        'Analyze your competitors',
         'Find the best keywords',
+        'Analyze your competitors',
       ]}
     />
   </section>
@@ -186,7 +194,7 @@ import { Icon } from 'astro-icon/components';
       <!-- Numbered list of steps -->
       <div class="flex flex-col gap-4 text-2xl">
         <div>1. 💻 Fill in your brand's website</div>
-        <div>2. 🤖 miseo AI will analyze your brand's information</div>
+        <div>2. 🤖 miseo AI will analyze your brand's information and gather the best keywords</div>
         <div>3. 🧮 Select the type of article you want to create</div>
         <div>4. 🔍 miseo AI will analyze your competitors and find the best keywords</div>
         <div>5. 📝 miseo AI will create the SEO blog post for you</div>
@@ -247,8 +255,8 @@ import { Icon } from 'astro-icon/components';
   >
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="text-5xl font-medium leading-tight mb-6">
-        Start ranking on Google with
-        <span class="text-primary">x1000 less effort</span> today
+        Start generating efortless
+        <span class="text-primary">SEO optimized blog posts</span> today
       </h2>
       <p class="text-base md:text-lg text-gray-800 max-w-3xl mx-auto mb-10">
         miseo AI is your personal AI SEO assistant that will help you boost your website's SEO.

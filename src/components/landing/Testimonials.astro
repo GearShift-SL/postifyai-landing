@@ -1,33 +1,28 @@
 ---
-// Testimonials data
-const testimonials = [
-  {
-    name: 'Marta',
-    rating: 5,
-    text: 'I used to spend countless hours trying to find ideas for my company\'s blog. Now I can just click "create post" and miseo AI does the rest.',
-    verified: true,
-  },
-  {
-    name: 'John',
-    rating: 5,
-    text: 'Best investment I made for my business. I used to delegate creating blog posts to my team, but they are not SEO experts and it was taking a lot of time to rank on Google. miseo AI writes a cool article in seconds.',
-    verified: true,
-  },
-  {
-    name: 'Rebecca',
-    rating: 4,
-    text: 'I don\'t think it has the quality of an expert human writer, but honestly, for the price it\'s a great investment, it helps us with ideas and content, we just have to revise the article in a couple of minutes and post it.',
-    verified: true,
-  },
-];
+interface Testimonial {
+  name: string;
+  rating: number;
+  text: string;
+  verified: boolean;
+}
+
+interface Props {
+  title?: string;
+  testimonials: Testimonial[];
+}
+
+const { title, testimonials } = Astro.props;
 ---
 
 <section class="py-16 px-4">
   <div class="max-w-7xl mx-auto">
     {/* Section Title */}
-    <h2 class="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-900 max-w-4xl mx-auto">
-      People <span class="text-primary">can't stop talking</span> about miseo AI
-    </h2>
+    <h2
+      class="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-900 max-w-4xl mx-auto"
+      set:html={title
+        ? title
+        : 'People <span class="text-primary">can\'t stop talking</span> about miseo AI'}
+    />
 
     {/* Testimonials Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -37,12 +32,18 @@ const testimonials = [
             {/* Star Rating */}
             <div class="flex items-center mb-4">
               {Array.from({ length: 5 }, (_, i) => (
-                <span class={`text-4xl ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
+                <span
+                  class={`text-4xl ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                >
+                  ★
+                </span>
               ))}
             </div>
 
             {/* Testimonial Text */}
-            <blockquote class="text-gray-700 leading-relaxed flex-1 mb-6">"{testimonial.text}"</blockquote>
+            <blockquote class="text-gray-700 leading-relaxed flex-1 mb-6">
+              "{testimonial.text}"
+            </blockquote>
 
             {/* Customer Info */}
             <div class="flex items-center justify-between mt-auto">
@@ -57,7 +58,7 @@ const testimonials = [
                       clip-rule="evenodd"
                     />
                   </svg>
-                    VERIFIED CUSTOMER
+                  VERIFIED CUSTOMER
                 </div>
               )}
             </div>

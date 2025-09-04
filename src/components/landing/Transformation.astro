@@ -1,42 +1,23 @@
 ---
 import { Icon } from 'astro-icon/components';
-
 interface ProblemMix {
   type: 'problem' | 'logo';
   name: string;
   h?: number;
 }
 
-// Create a problem mix dictionary by mixing problems and logos randomly with this structure:
-const problemMix: ProblemMix[] = [
-  {
-    type: 'problem',
-    name: 'time consuming',
-  },
-  {
-    type: 'problem',
-    name: 'low quality',
-  },
-  {
-    type: 'problem',
-    name: 'no traffic',
-  },
-  {
-    type: 'problem',
-    name: 'low engagement',
-  },
-  {
-    type: 'problem',
-    name: 'ranking low',
-  },
-];
+export interface Props {
+  title: string;
+  problemMix: ProblemMix[];
+  solutions: string[];
+}
 
-const solutions = ['Create SEO blog posts in seconds', 'Analyze your competitors', 'Find the best keywords'];
+const { title, problemMix, solutions } = Astro.props;
 ---
 
 <div class="max-w-6xl mx-auto px-4 py-12">
   <div class="text-center mb-16">
-    <h2 class="text-5xl font-bold mb-4">Save 4 hours a day writing <span class="text-primary">SEO blog posts</span></h2>
+    <h2 class="text-5xl font-bold mb-4" set:html={title} />
   </div>
 
   <div class="flex flex-col lg:flex-row gap-4 items-center">
@@ -49,7 +30,9 @@ const solutions = ['Create SEO blog posts in seconds', 'Analyze your competitors
           {
             problemMix.map((item) =>
               item.type === 'problem' ? (
-                <div class="rounded-full px-4 py-2 text-xs font-medium bg-gray-500 text-white ">{item.name}</div>
+                <div class="rounded-full px-4 py-2 text-xs font-medium bg-gray-500 text-white ">
+                  {item.name}
+                </div>
               ) : (
                 <div class="px-4 py-2  text-gray-600 ">
                   <Icon name={item.name} class={`w-auto h-${item.h}`} />
