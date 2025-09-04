@@ -238,6 +238,7 @@ const PricingTable = () => {
             <div className="space-y-4 mb-8">
               {[
                 'Custom integration support',
+                'Team support (unlimited users)',
                 'Dedicated account manager',
                 'Priority support',
                 'Custom feature development',
