@@ -108,10 +108,9 @@ const PricingTable = () => {
 
             <div className="space-y-4 mb-8">
               {[
-                'Zero configuration, zero maintenance',
-                'Basic blog generation',
+                'Only blog generation',
                 'Basic brand awareness',
-                '4 keyword research',
+                'Limited keyword research',
                 'Automatic competitor analysis',
               ].map((feature: string) => (
                 <div className="flex items-center">
