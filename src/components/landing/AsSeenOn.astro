@@ -5,6 +5,7 @@ interface Logo {
   name: string;
   icon: string;
   height?: number;
+  href?: string;
 }
 
 interface LogoList {
@@ -33,11 +34,15 @@ const { logoLists, className = '' } = Astro.props;
                   {logoList.title}
                 </p>
                 {logoList.logos.map((logo) => (
-                  <div class="flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 flex-shrink-0 h-full mr-6 sm:mr-8 md:mr-12">
-                    <Icon
-                      name={logo.icon}
-                      class={`w-auto max-w-full grayscale ${logo.height ? `h-${logo.height}` : 'h-8'}`}
-                    />
+                  <div
+                    class={`flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 flex-shrink-0 h-full mr-6 sm:mr-8 md:mr-12 ${logo.href ? 'hover:cursor-pointer' : ''}`}
+                  >
+                    <a href={logo.href} target="_blank">
+                      <Icon
+                        name={logo.icon}
+                        class={`w-auto max-w-full grayscale ${logo.height ? `h-${logo.height}` : 'h-8'}`}
+                      />
+                    </a>
                   </div>
                 ))}
               </>

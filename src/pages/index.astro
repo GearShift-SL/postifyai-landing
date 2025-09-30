@@ -113,16 +113,22 @@ import { Icon } from 'astro-icon/components';
         {
           title: 'as seen on',
           logos: [
-            { name: 'El Referente', icon: 'elreferente-logo', height: 8 },
-            { name: 'Gearshift', icon: 'gearshift-logo', height: 8 },
-            { name: 'SaaSHub', icon: 'saashub-logo', height: 10 },
+            {
+              name: 'El Referente',
+              icon: 'elreferente-logo',
+              height: 8,
+              href: 'https://elreferente.es',
+            },
+            { name: 'Gearshift', icon: 'gearshift-logo', height: 8, href: 'https://gearshift.es' },
+            { name: 'SaaSHub', icon: 'saashub-logo', height: 10, href: 'https://saashub.com' },
           ],
         },
         {
           title: 'and used by',
           logos: [
-            { name: 'AutoIPC', icon: 'autoipc-logo', height: 8 },
-            { name: 'SynCal', icon: 'syncal-logo', height: 8 },
+            { name: 'Padelio', icon: 'padelio-logo', height: 8, href: 'https://padelio.app' },
+            { name: 'AutoIPC', icon: 'autoipc-logo', height: 8, href: 'https://autoipc.es' },
+            { name: 'SynCal', icon: 'syncal-logo', height: 8, href: 'https://syncal.app' },
           ],
         },
       ]}
@@ -199,15 +205,23 @@ import { Icon } from 'astro-icon/components';
     <Testimonials
       testimonials={[
         {
-          name: 'Marta',
+          name: 'Marcos Sabarís',
+          personHref: 'https://x.com/Kildos19',
+          company: 'Padelio',
+          companyLogo: 'padelio-logo',
+          companyHref: 'https://padelio.app',
           rating: 5,
-          text: 'I used to spend countless hours trying to find ideas for my company\'s blog. Now I can just click "create post" and miseo does the rest.',
+          text: "I've been trying miseo for Padelio for a few weeks now and it's been great. It helped us boost traffic to our app and we've seen a peak in growth in the past few months.",
           verified: true,
         },
         {
-          name: 'John',
+          name: 'Daniel García',
+          personHref: 'https://x.com/onticdani',
+          company: 'AutoIPC',
+          companyLogo: 'autoipc-logo',
+          companyHref: 'https://autoipc.es',
           rating: 5,
-          text: 'Best investment I made for my business. I used to delegate creating blog posts to my team, but they are not SEO experts and it was taking a lot of time to rank on Google. miseo writes a cool article in seconds.',
+          text: "Best investment I made for my business. We're betting on SEO for our business but it was taking a lot of time from our small team. Miseo is writing the SEO content for us in seconds.",
           verified: true,
         },
         {
