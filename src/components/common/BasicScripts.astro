@@ -101,11 +101,20 @@
 
       function applyHeaderStylesOnScroll() {
         const header = document.querySelector('#header[data-aw-sticky-header]');
-        if (!header) return;
-        if (lastKnownScrollPosition > 60 && !header.classList.contains('scroll')) {
-          header.classList.add('scroll');
-        } else if (lastKnownScrollPosition <= 60 && header.classList.contains('scroll')) {
-          header.classList.remove('scroll');
+        if (header) {
+          if (lastKnownScrollPosition > 60 && !header.classList.contains('scroll')) {
+            header.classList.add('scroll');
+          } else if (lastKnownScrollPosition <= 60 && header.classList.contains('scroll')) {
+            header.classList.remove('scroll');
+          }
+        }
+        const headerActions = document.querySelector('#headerActions');
+        if (headerActions) {
+          if (lastKnownScrollPosition > 60 && !headerActions.classList.contains('scroll')) {
+            headerActions.classList.add('scroll');
+          } else if (lastKnownScrollPosition <= 60 && headerActions.classList.contains('scroll')) {
+            headerActions.classList.remove('scroll');
+          }
         }
         ticking = false;
       }

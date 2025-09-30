@@ -1,9 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
 @theme {
   /* Replace the tailwind sans font with Inter Variable */
-  --font-sans: "Inter Variable", sans-serif;
+  --font-sans: 'Inter Variable', sans-serif;
 
   /* Custom colors */
   --color-primary: #f080b5;
@@ -39,6 +39,11 @@
   margin: 0.5rem auto;
   width: fit-content;
   padding: 0.75rem 1.5rem;
+}
+
+#headerActions.scroll {
+  display: flex;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark #header.scroll > div:last-child,

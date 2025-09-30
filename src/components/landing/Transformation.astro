@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import MainLogo from '@/icons/main-logo.svg';
 interface ProblemMix {
   type: 'problem' | 'logo';
   name: string;
@@ -99,7 +100,7 @@ const { title, problemMix, solutions } = Astro.props;
       <!-- logo - positioned absolutely in the center -->
       <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
         <div class="bg-white rounded-3xl p-8 shadow-lg">
-          <Icon name="main-logo" class="text-3xl lg:text-5xl" />
+          <MainLogo width={150} />
         </div>
       </div>
     </div>

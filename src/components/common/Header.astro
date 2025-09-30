@@ -45,7 +45,7 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
 
 <header
   class:list={[
-    { sticky: isSticky, relative: !isSticky, dark: isDark },
+    { 'md:sticky': isSticky, relative: true, dark: isDark },
     'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out',
   ]}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
@@ -137,7 +137,8 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
       </ul>
     </nav>
     <div
-      class="hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end"
+      id="headerActions"
+      class="hidden md:self-center items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end"
       class:list={[{ 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' }]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
@@ -158,13 +159,6 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
 </header>
 
 <style>
-  /* Hide header on mobile */
-  @media (max-width: 767px) {
-    #header {
-      display: none;
-    }
-  }
-
   /* Mobile menu styles */
   #header.h-screen {
     display: flex;
@@ -241,26 +235,3 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
     }
   }
 </style>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const SCROLL_THRESHOLD = 30; // Change this value to set your desired threshold in pixels
-
-    function handleScroll() {
-      const nav = document.getElementById('mainNav');
-      if (nav) {
-        if (window.scrollY <= SCROLL_THRESHOLD) {
-          nav.classList.add('mt-12');
-        } else {
-          nav.classList.remove('mt-12');
-        }
-      }
-    }
-
-    // Add event listener for scroll
-    window.addEventListener('scroll', handleScroll);
-
-    // Call handleScroll on page load to set initial state
-    handleScroll();
-  });
-</script>
