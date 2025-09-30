@@ -48,9 +48,9 @@ type NavigationConfig = {
 
 export const SITE = (): SiteConfig => {
   return {
-    title: 'miseo AI - Automate your SEO with AI',
+    title: 'miseo - Automate your SEO content with AI',
     description:
-      'miseo AI is a tool that helps you automate your SEO content creation with AI in seconds.',
+      'miseo is a tool that helps you automate your SEO content creation with AI in seconds.',
     author: 'Daniel García',
     siteUrl: 'https://miseo.ai/',
     ogImage: '/src/assets/images/og-image.webp', // Needs to be an absolute path /src/...
@@ -84,7 +84,7 @@ export const NAVIGATION = (): NavigationConfig => ({
         ],
       },
       {
-        title: 'miseo AI',
+        title: 'miseo',
         links: [
           { text: 'How it works', href: `/#how-it-works` },
           { text: 'Features', href: `/#features` },
@@ -96,7 +96,7 @@ export const NAVIGATION = (): NavigationConfig => ({
         title: 'GearShift Universe',
         links: [
           { text: 'GearShift', href: 'https://gearshift.es/' },
-          { text: 'miseo AI', href: 'https://miseo.ai/' },
+          { text: 'miseo', href: 'https://miseo.ai/' },
           { text: 'Estavia', href: 'https://estavia.ai/' },
           { text: 'AutoIPC', href: 'https://autoipc.es/' },
           { text: 'SynCal', href: 'https://syncal.app/' },
@@ -133,7 +133,7 @@ export const NAVIGATION = (): NavigationConfig => ({
     footNote: `
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
         >© 2025 <a href="/" class="hover:underline"
-          >miseo AI</a
+          >miseo</a
         >
       </span>
         `,

@@ -1,46 +1,40 @@
-import React, { useState } from "react";
-import {
-  GoogleOAuthProvider,
-  GoogleLogin,
-  type CredentialResponse,
-} from "@react-oauth/google";
+import React, { useState } from 'react';
+import { GoogleOAuthProvider, GoogleLogin, type CredentialResponse } from '@react-oauth/google';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
   InputOTPSeparator,
-} from "@/components/ui/input-otp";
-import { customAxiosInstance } from "@/api/axios";
+} from '@/components/ui/input-otp';
+import { customAxiosInstance } from '@/api/axios';
 
-const APP_URL = import.meta.env.DEV
-  ? "http://localhost:5173"
-  : "https://app.miseo.ai";
+const APP_URL = import.meta.env.DEV ? 'http://localhost:5173' : 'https://app.miseo.ai';
 
 const CTA = () => {
-  const [status, setStatus] = useState("idle");
-  const [message, setMessage] = useState("");
-  const [step, setStep] = useState<"signup" | "code-login">("signup");
+  const [status, setStatus] = useState('idle');
+  const [message, setMessage] = useState('');
+  const [step, setStep] = useState<'signup' | 'code-login'>('signup');
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 
   const handleEmailLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.target as HTMLFormElement);
-    const email = formData.get("email") as string;
+    const email = formData.get('email') as string;
 
     try {
       await customAxiosInstance({
-        url: "/auth/browser/start/",
-        method: "POST",
+        url: '/auth/browser/start/',
+        method: 'POST',
         data: { email: email },
       });
 
-      setStep("code-login");
+      setStep('code-login');
     } catch (error: any) {
       // 401 means the code was sent successfully
       if (error?.response?.status === 401) {
-        console.debug("Code sent successfully");
-        setStep("code-login");
+        console.debug('Code sent successfully');
+        setStep('code-login');
         return;
       }
 
@@ -52,62 +46,62 @@ const CTA = () => {
   const handleCodeLogin = async (code: string) => {
     try {
       await customAxiosInstance({
-        url: "/auth/browser/code/confirm/",
-        method: "POST",
+        url: '/auth/browser/code/confirm/',
+        method: 'POST',
         data: { code: code },
       });
 
-      console.log("Logged in with code");
+      console.log('Logged in with code');
       setIsUserAuthenticated(true);
       // Navigate to the app in a new tab
       window.location.assign(APP_URL);
     } catch (error: any) {
-      console.error("Error logging in with code", error);
+      console.error('Error logging in with code', error);
     }
   };
 
   const handleGoogleLogin = async (credentialResponse: CredentialResponse) => {
     if (!credentialResponse.credential) {
-      console.error("No credential found");
+      console.error('No credential found');
       return;
     }
 
     // Send the credential to the allauth api provider token endpoint
     try {
       await customAxiosInstance({
-        url: "/auth/browser/provider/token/",
-        method: "POST",
+        url: '/auth/browser/provider/token/',
+        method: 'POST',
         data: {
-          provider: "google",
-          process: "login",
+          provider: 'google',
+          process: 'login',
           token: {
-            client_id: credentialResponse.clientId ?? "",
+            client_id: credentialResponse.clientId ?? '',
             id_token: credentialResponse.credential,
           },
         },
       });
 
-      console.debug("Logged in with Google");
+      console.debug('Logged in with Google');
       setIsUserAuthenticated(true);
 
       // Navigate to the app in a new tab
       window.location.assign(APP_URL);
     } catch (error: any) {
-      console.error("Error logging in with Google", error);
+      console.error('Error logging in with Google', error);
     }
   };
 
   // CSS animation styles
   const flashButtonStyle = {
-    animation: "flashGradient 4s steps(1, jump-end) infinite",
-    background: "#000000",
-    border: "2px solid var(--color-primary)",
+    animation: 'flashGradient 4s steps(1, jump-end) infinite',
+    background: '#000000',
+    border: '2px solid var(--color-primary)',
   };
 
   // Add CSS keyframes to document head
   React.useEffect(() => {
-    const styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
+    const styleSheet = document.createElement('style');
+    styleSheet.type = 'text/css';
     styleSheet.innerText = `
       @keyframes flashGradient {
         0%, 50% {
@@ -130,13 +124,13 @@ const CTA = () => {
     const checkIfLoggedIn = async () => {
       try {
         const response = await customAxiosInstance({
-          url: "/auth/user/me/",
-          method: "GET",
+          url: '/auth/user/me/',
+          method: 'GET',
         });
 
         setIsUserAuthenticated(true);
       } catch (error: any) {
-        console.error("Error checking if user is logged in", error);
+        console.error('Error checking if user is logged in', error);
       }
     };
     checkIfLoggedIn();
@@ -153,7 +147,7 @@ const CTA = () => {
       </div>
 
       <div className="mt-6">
-        {step === "signup" && !isUserAuthenticated && (
+        {step === 'signup' && !isUserAuthenticated && (
           <form onSubmit={handleEmailLogin}>
             {/* Email Input */}
             <div className="mb-4">
@@ -173,7 +167,7 @@ const CTA = () => {
               className="hidden sm:block w-full text-white py-3 px-6 rounded-lg font-semibold text-center mb-4 hover:cursor-pointer hover:scale-105 hover:shadow-lg"
               style={flashButtonStyle}
             >
-              Create your first SEO blog post now →
+              Start creating SEO content now →
             </button>
 
             <button
@@ -182,12 +176,12 @@ const CTA = () => {
               className="block sm:hidden w-full text-white py-3 px-6 rounded-lg font-semibold text-center mb-4 hover:cursor-pointer hover:scale-105 hover:shadow-lg"
               style={flashButtonStyle}
             >
-              Create your first SEO blog post now →
+              Start creating SEO content now →
             </button>
           </form>
         )}
 
-        {step === "code-login" && !isUserAuthenticated && (
+        {step === 'code-login' && !isUserAuthenticated && (
           <div className="flex flex-col items-center justify-center my-10">
             <div className="text-muted-foreground text-center text-sm">
               We've sent you a code to your email. Please enter it below.
@@ -218,7 +212,7 @@ const CTA = () => {
             className="text-center text-sm text-white mt-12 mb-4 hover:cursor-pointer rounded-lg p-4 transition-colors"
             style={{
               background:
-                "linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-primary) 100%)",
+                'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-primary) 100%)',
             }}
           >
             Go to the App
@@ -244,7 +238,7 @@ const CTA = () => {
               <div className="flex justify-center w-full">
                 <GoogleLogin
                   onSuccess={handleGoogleLogin}
-                  onError={() => console.log("Google Login Failed")}
+                  onError={() => console.log('Google Login Failed')}
                   // useOneTap // Optional: show auto-login prompt
                   theme="outline"
                   type="standard"

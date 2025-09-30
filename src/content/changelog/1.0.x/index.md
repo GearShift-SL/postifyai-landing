@@ -1,11 +1,11 @@
 ---
-version: "1.0.x"
+version: '1.0.x'
 date: 2025-08-15
 ---
 
-### Launching miseo AI!
+### Launching miseo!
 
-We are launching miseo AI, the best AI SEO blog post generation tool.
+We are launching miseo, the best AI SEO blog post generation tool.
 
 <!-- ### Otros
 

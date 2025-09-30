@@ -21,47 +21,47 @@ type Feature = {
 const features: Feature[] = [
   {
     tag: 'EASY SETUP',
-    title: 'miseo AI analyzes your brand automatically',
+    title: 'miseo analyzes your brand automatically',
     description: `
-      By entering your website, miseo AI analyzes the landing page of your product or service.
+      By entering your website, miseo analyzes the landing page of your product or service.
       <br/><br/>
-      This allows miseo AI to cater the generated blog posts towards your brand, optimizing them for SEO.
+      This allows miseo to cater the generated blog posts towards your brand, optimizing them for SEO.
       <br/><br/>
       You can always fill in further details manually.
     `,
-    ctaText: 'Create your first blog post now',
-    ctaTextMobile: 'Create your first blog post',
+    ctaText: 'Start creating SEO content now',
+    ctaTextMobile: 'Start creating SEO content',
     ctaLink: '#hero',
     image: feature1,
   },
   {
     tag: 'COMPETITOR OPTIMIZATION',
-    title: 'miseo AI automatically analyzes your competitors',
+    title: 'miseo automatically analyzes your competitors',
     description: `
-      Before each article is generated, miseo AI will analyze the top ranking websites for the chosen keywords.
+      Before each article is generated, miseo will analyze the top ranking websites for the chosen keywords.
       <br/><br/>
-      This allows miseo AI to optimize the content of the blog posts so they rank higher on Google and other search engines.
+      This allows miseo to optimize the content of the blog posts so they rank higher on Google and other search engines.
     `,
-    ctaText: 'Create your first blog post now',
-    ctaTextMobile: 'Create your first blog post',
+    ctaText: 'Start creating SEO content now',
+    ctaTextMobile: 'Start creating SEO content',
     ctaLink: '#hero',
     image: feature2,
   },
   {
     tag: 'KEYWORDS DONE FOR YOU',
-    title: 'miseo AI comes up with fresh keyword ideas',
+    title: 'miseo comes up with fresh keyword ideas',
     description: `
-      After miseo AI analyzes your brand, you can ask it to generate a list of keywords and blog post title ideas that cater to your product.
+      After miseo analyzes your brand, you can ask it to generate a list of keywords and blog post title ideas that cater to your product.
       <br/><br/>
       This feature saves you hours of work and research.
       <br/><br/>
-      Save your keywords and blog post title ideas directly in miseo AI, so you can generate them later.
+      Save your keywords and blog post title ideas directly in miseo, so you can generate them later.
     `,
     ctaText: 'Start researching keywords today',
     ctaTextMobile: 'Start researching keywords',
     ctaLink: '#hero',
     image: feature3,
-  }
+  },
 ];
 ---
 
@@ -82,7 +82,9 @@ const features: Feature[] = [
           class={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 items-center scroll-mt-24`}
         >
           <div class="lg:w-1/2 space-y-4">
-            <p class="text-sm font-semibold text-gray-500 tracking-wider uppercase">{feature.tag}</p>
+            <p class="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+              {feature.tag}
+            </p>
             <h3 class="text-4xl text-gray-900">{feature.title}</h3>
             <div class="text-lg text-gray-600" set:html={feature.description} />
 
@@ -102,7 +104,15 @@ const features: Feature[] = [
                 Your browser does not support the video tag.
               </video>
             )}
-            {feature.image && <Image src={feature.image} alt={feature.title} class="w-full" width={800} height={600} />}
+            {feature.image && (
+              <Image
+                src={feature.image}
+                alt={feature.title}
+                class="w-full"
+                width={800}
+                height={600}
+              />
+            )}
           </div>
         </div>
       ))

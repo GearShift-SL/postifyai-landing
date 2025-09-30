@@ -9,43 +9,40 @@ interface FAQItem {
 
 const faq: FAQItem[] = [
   {
-    question: 'What does miseo AI do exactly?',
+    question: 'What does miseo do exactly?',
     answer:
-      'miseo AI is your personal AI SEO assistant. It will help you find keywords, create SEO optimized content, find high quality backlinks and more.'
+      'miseo is your personal AI SEO assistant. It will help you find keywords, create SEO optimized content, find high quality backlinks and more.',
   },
   {
-    question: 'Is miseo AI really free to use?',
+    question: 'How does miseo integrate with my existing content management system?',
     answer:
-      'Partly, postifyAI, which is part of miseo AI, is an open-source project, and you can use it for free. You can also opt for our PRO subscription, which offers many more features and support.'
-  },
-  {
-    question: 'How does miseo AI integrate with my existing content management system?',
-    answer:
-      'Integration is straightforward. miseo AI can export content in markdown, which is compatible with most popular CMS platforms. Otherwise you can just copy and paste the content.'
+      'Integration is straightforward. miseo can export content in markdown, which is compatible with most popular CMS platforms. Otherwise you can just copy and paste the content.',
   },
   {
     question: 'Can I customize the tone and style of the generated content?',
     answer:
-      'This feature is coming soon! miseo AI allows you to define your brand voice and style preferences. You can set parameters for tone (formal, casual, humorous, etc.), writing style, and even specify certain phrases or terminologies to include or avoid. The AI will then generate content that aligns with your brand guidelines.'
+      'This feature is coming soon! miseo allows you to define your brand voice and style preferences. You can set parameters for tone (formal, casual, humorous, etc.), writing style, and even specify certain phrases or terminologies to include or avoid. The AI will then generate content that aligns with your brand guidelines.',
   },
   {
-    question: 'What types of content can miseo AI generate?',
+    question: 'What types of content can miseo generate?',
     answer:
-      'miseo AI is versatile and can generate various types of content, including blog guides, listicles, comparisons, etc. We offer different templates and structures for each content type, ensuring that the output is not only SEO-optimized but also formatted appropriately for its intended use.'
+      'miseo is versatile and can generate various types of content, including blog guides, listicles, comparisons, etc. We offer different templates and structures for each content type, ensuring that the output is not only SEO-optimized but also formatted appropriately for its intended use.',
   },
   {
-    question: 'Can I try miseo AI before committing to a subscription?',
+    question: 'Can I try miseo before committing to a subscription?',
     answer:
-      'We offer a free trial with a bunch of credits for you to try out the tool. If you prefer a cloud-based solution, we do offer a hassle-free subscription service with additional features and support.'
+      'We offer a free trial with a bunch of credits for you to try out the tool. If you prefer a cloud-based solution, we do offer a hassle-free subscription service with additional features and support.',
   },
   {
-    question: 'How does miseo AI ensure the generated content is original and plagiarism-free?',
-    answer: 'miseo AI uses advanced natural language processing techniques to generate original content. Each piece is created from scratch based on the provided keywords and parameters. We also integrate with leading plagiarism checking tools, allowing you to verify the originality of the content before publication. If any potential issues are detected, the AI can regenerate the content to ensure uniqueness.'
+    question: 'How does miseo ensure the generated content is original and plagiarism-free?',
+    answer:
+      'miseo uses advanced natural language processing techniques to generate original content. Each piece is created from scratch based on the provided keywords and parameters. We also integrate with leading plagiarism checking tools, allowing you to verify the originality of the content before publication. If any potential issues are detected, the AI can regenerate the content to ensure uniqueness.',
   },
   {
-    question: 'Can miseo AI optimize content for specific search engines or locales?',
-    answer: 'Yes, miseo AI can optimize content for different search engines and various locales. You can specify your target geographic location, and the AI will adjust its optimization strategies accordingly, including keyword usage, content structure, and even cultural nuances when relevant.'
-  }
+    question: 'Can miseo optimize content for specific search engines or locales?',
+    answer:
+      'Yes, miseo can optimize content for different search engines and various locales. You can specify your target geographic location, and the AI will adjust its optimization strategies accordingly, including keyword usage, content structure, and even cultural nuances when relevant.',
+  },
 ];
 ---
 
@@ -59,7 +56,10 @@ const faq: FAQItem[] = [
       faq.map((item, index) => (
         <div class="border border-gray-200 rounded-lg overflow-hidden">
           {item.href ? (
-            <a href={item.href} class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none">
+            <a
+              href={item.href}
+              class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none"
+            >
               <span class="text-lg font-medium">{item.question}</span>
             </a>
           ) : (
@@ -78,7 +78,12 @@ const faq: FAQItem[] = [
                 stroke="currentColor"
                 id={`faq-icon-${index + 1}`}
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
           )}

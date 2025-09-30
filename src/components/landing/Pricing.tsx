@@ -108,7 +108,7 @@ const PricingTable = () => {
 
             <div className="space-y-4 mb-8">
               {[
-                'Only blog generation',
+                'SEO content generation',
                 'Basic brand awareness',
                 'Limited keyword research',
                 'Automatic competitor analysis',
@@ -237,12 +237,12 @@ const PricingTable = () => {
 
             <div className="space-y-4 mb-8">
               {[
-                'Custom integration support',
                 'Team support (unlimited users)',
+                'Team collaboration',
+                'Custom integration support',
                 'Dedicated account manager',
                 'Priority support',
                 'Custom feature development',
-                'Unlimited blog posts',
               ].map((feature: string) => (
                 <div className="flex items-center">
                   <svg
