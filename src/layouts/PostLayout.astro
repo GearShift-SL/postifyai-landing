@@ -5,7 +5,6 @@ import type { CollectionEntry } from 'astro:content';
 import importImage from '@/utils/importImage';
 import { Image } from 'astro:assets';
 
-
 // Define the props type
 export interface Props {
   post: CollectionEntry<'blog'>;
@@ -15,7 +14,17 @@ export interface Props {
 const { post } = Astro.props;
 
 // Extract the post data
-const { title, description, author, pubDatetime, modDatetime, ogImage, canonicalUrl, category, tags } = post?.data;
+const {
+  title,
+  description,
+  author,
+  pubDatetime,
+  modDatetime,
+  ogImage,
+  canonicalUrl,
+  category,
+  tags,
+} = post?.data;
 
 // Create metadata object to pass to PageLayout
 const metadata = {
@@ -91,17 +100,17 @@ if (ogImage) {
         )
       }
 
-{
-  ogImageImage && (
-    <div class="mb-6">
-      <Image
-        src={ogImageImage}
-        alt={`Cover image for ${title}`}
-        class="rounded-lg w-full max-h-[400px] object-cover shadow-md"
-      />
-    </div>
-  )
-}
+      {
+        ogImageImage && (
+          <div class="mb-6">
+            <Image
+              src={ogImageImage}
+              alt={`Cover image for ${title}`}
+              class="rounded-lg w-full max-h-[400px] object-cover shadow-md"
+            />
+          </div>
+        )
+      }
 
       <div
         class="prose max-w-none
@@ -119,11 +128,7 @@ if (ogImage) {
       <!-- Show tags -->
       <div class="flex flex-wrap gap-2 mt-8 items-center">
         <span class="text-sm text-gray-600">Tags:</span>
-        {tags.map((tag) => (
-          <a class="bg-gray-100 rounded-md px-2 py-1 text-sm">
-            {tag}
-          </a>
-        ))}
+        {tags.map((tag) => <a class="bg-gray-100 rounded-md px-2 py-1 text-sm">{tag}</a>)}
       </div>
     </div>
   </div>
@@ -264,7 +269,13 @@ if (ogImage) {
       if (item.dataset.target === currentHeadingId) {
         item.classList.add('font-medium', 'text-blue-600', 'border-l-2', 'border-blue-600', 'pl-2');
       } else {
-        item.classList.remove('font-medium', 'text-blue-600', 'border-l-2', 'border-blue-600', 'pl-2');
+        item.classList.remove(
+          'font-medium',
+          'text-blue-600',
+          'border-l-2',
+          'border-blue-600',
+          'pl-2'
+        );
       }
     });
   }
