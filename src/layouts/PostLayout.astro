@@ -15,20 +15,11 @@ export interface Props {
 const { post } = Astro.props;
 
 // Extract the post data
-const {
-  title,
-  description,
-  author,
-  pubDatetime,
-  modDatetime,
-  ogImage,
-  canonicalUrl,
-  category,
-  tags,
-} = post?.data;
+const { title, description, author, pubDatetime, modDatetime, canonicalUrl, category, tags } =
+  post?.data;
 
 // Resolve og image: prefer frontmatter, otherwise look for a file in the post folder
-let resolvedOgPath: string | undefined = ogImage;
+let resolvedOgPath: string | undefined;
 if (!resolvedOgPath) {
   resolvedOgPath = await resolveCoverImagePathFromId(post.id);
 }
