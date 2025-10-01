@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import type { CollectionEntry } from 'astro:content';
 import importImage from '@/utils/importImage';
 import { Image } from 'astro:assets';
+import resolveCoverImagePathFromId from '@/utils/resolveCoverImagePath';
 
 // Define the props type
 export interface Props {
@@ -26,6 +27,12 @@ const {
   tags,
 } = post?.data;
 
+// Resolve og image: prefer frontmatter, otherwise look for a file in the post folder
+let resolvedOgPath: string | undefined = ogImage;
+if (!resolvedOgPath) {
+  resolvedOgPath = await resolveCoverImagePathFromId(post.id);
+}
+
 // Create metadata object to pass to PageLayout
 const metadata = {
   title: title,
@@ -33,7 +40,7 @@ const metadata = {
   author: author,
   pubDatetime: pubDatetime,
   modDatetime: modDatetime,
-  ogImagePath: ogImage,
+  ogImagePath: resolvedOgPath,
   canonicalUrl: canonicalUrl,
 };
 
@@ -46,10 +53,10 @@ const formatDate = (date: Date) => {
   });
 };
 
-// Import the ogImage dynamically if it's provided
+// Import the cover image dynamically if it's provided or resolved
 let ogImageImage: ImageMetadata | undefined;
-if (ogImage) {
-  ogImageImage = await importImage(ogImage);
+if (resolvedOgPath) {
+  ogImageImage = await importImage(resolvedOgPath);
 }
 ---
 

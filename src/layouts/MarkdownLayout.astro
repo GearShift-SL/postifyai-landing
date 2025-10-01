@@ -12,7 +12,6 @@ export interface Props {
     author?: string;
     pubDatetime?: Date;
     modDatetime?: Date;
-    ogImage?: string;
     canonicalUrl?: string;
   };
 }
@@ -20,7 +19,7 @@ export interface Props {
 const { frontmatter } = Astro.props;
 
 // Extract the post data
-const { title, description, author, pubDatetime, modDatetime, ogImage, canonicalUrl } = frontmatter;
+const { title, description, author, pubDatetime, modDatetime, canonicalUrl } = frontmatter;
 
 // Create metadata object to pass to PageLayout
 const metadata = {
@@ -29,7 +28,6 @@ const metadata = {
   author: author,
   pubDatetime: pubDatetime,
   modDatetime: modDatetime,
-  ogImagePath: ogImage,
   canonicalUrl: canonicalUrl,
 };
 // Format dates
@@ -221,7 +219,13 @@ const formatDate = (date: Date) => {
       if (item.dataset.target === currentHeadingId) {
         item.classList.add('font-medium', 'text-blue-600', 'border-l-2', 'border-blue-600', 'pl-2');
       } else {
-        item.classList.remove('font-medium', 'text-blue-600', 'border-l-2', 'border-blue-600', 'pl-2');
+        item.classList.remove(
+          'font-medium',
+          'text-blue-600',
+          'border-l-2',
+          'border-blue-600',
+          'pl-2'
+        );
       }
     });
   }

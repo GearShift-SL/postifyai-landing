@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import type { CollectionEntry } from 'astro:content';
 import importImage from '@/utils/importImage';
 import { Image } from 'astro:assets';
+import resolveCoverImagePathFromId from '@/utils/resolveCoverImagePath';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -16,16 +17,22 @@ let filteredPosts = posts;
 
 // If category is provided, filter posts by category
 if (category) {
-  filteredPosts = posts.filter((post) => post.data.category.toLowerCase() === category.toLowerCase());
+  filteredPosts = posts.filter(
+    (post) => post.data.category.toLowerCase() === category.toLowerCase()
+  );
 }
 
 // If tags are provided, filter posts by tags
 if (tag) {
-  filteredPosts = filteredPosts.filter((post) => post.data.tags.some((t) => t.toLowerCase() === tag.toLowerCase()));
+  filteredPosts = filteredPosts.filter((post) =>
+    post.data.tags.some((t) => t.toLowerCase() === tag.toLowerCase())
+  );
 }
 
 // Sort posts by date
-const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf());
+const sortedPosts = filteredPosts.sort(
+  (a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf()
+);
 
 // Format date function
 const formatDate = (date: Date) => {
@@ -50,18 +57,24 @@ const getH1Title = () => {
 
 const h1Title = getH1Title();
 
-// Get the images for the post in order and add them to a list so we can use them in the component
-const images = await Promise.all(sortedPosts.map(async (post) => {
-  if (post.data.ogImage) {
-    return await importImage(post.data.ogImage);
-  }
-  return null;
-}));
+// Get the images for the posts via resolver only
+const images = await Promise.all(
+  sortedPosts.map(async (post) => {
+    const path = await resolveCoverImagePathFromId(post.id);
+    if (path) {
+      try {
+        return await importImage(path);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  })
+);
 ---
 
 <div class="space-y-8">
-  <h1 class="text-3xl font-bold mb-8" set:html={h1Title}>
-  </h1>
+  <h1 class="text-3xl font-bold mb-8" set:html={h1Title} />
 
   {posts.length === 0 && <p class="text-gray-600">No posts found.</p>}
 
@@ -79,12 +92,15 @@ const images = await Promise.all(sortedPosts.map(async (post) => {
                       alt={`Cover image for ${post.data.title}`}
                       class="w-24 h-24 object-cover rounded-lg"
                     />
-
                   </div>
                 )}
                 <div class="flex-1 min-w-0">
-                  <h2 class="text-xl font-semibold group-hover:text-blue-600 transition-colors">{post.data.title}</h2>
-                  {post.data.description && <p class="mt-2 text-gray-700 line-clamp-2">{post.data.description}</p>}
+                  <h2 class="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                    {post.data.title}
+                  </h2>
+                  {post.data.description && (
+                    <p class="mt-2 text-gray-700 line-clamp-2">{post.data.description}</p>
+                  )}
                 </div>
               </div>
             </a>
